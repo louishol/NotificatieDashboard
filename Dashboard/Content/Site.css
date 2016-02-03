@@ -75,14 +75,14 @@ textarea {
 
 
 .flex-item1 {
-    background-color: aliceblue;
+    background-color: white;
     width: auto;
     height: auto;
     flex-grow: 1;
     margin:10px;
 }
 .flex-item2 {
-    background-color: aliceblue;
+    background-color: white;
     width: auto;
     height: auto;
     flex-grow: 2;

@@ -107,3 +107,4 @@ C:\Users\louis\OneDrive\Documenten\GitHub\NotificatieDashboard\Dashboard\bin\Mic
 C:\Users\louis\OneDrive\Documenten\GitHub\NotificatieDashboard\Dashboard\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\louis\OneDrive\Documenten\GitHub\NotificatieDashboard\Dashboard\obj\Debug\Dashboard.dll
 C:\Users\louis\OneDrive\Documenten\GitHub\NotificatieDashboard\Dashboard\obj\Debug\Dashboard.pdb
+C:\Users\louis\OneDrive\Documenten\GitHub\NotificatieDashboard\Dashboard\obj\Debug\Dashboard.csprojResolveAssemblyReference.cache

@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -21,20 +23,36 @@ namespace Dashboard.Controllers
             return View("Login");
         }
         [HttpPost]
-        public ActionResult Login(LoginViewModel model, string ReturnUrl)
+        public ActionResult Login(LoginViewModel model, string ReturnUrl = "")
         {
 
-            if (db.tblUsers.Where(c => c.loginName == model.UserName && c.password == model.Password).FirstOrDefault() != null)
+            string hPassword = sha256(model.Password);
+
+            if (db.tblUsers.Where(c => c.loginName == model.UserName && c.password == hPassword).FirstOrDefault() != null)
             {
                 FormsAuthentication.SetAuthCookie(model.UserName, false);
+                return Redirect(ReturnUrl);
             }
        
             return View();
         }
+
         public ActionResult LogOff()
         {
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
+        }
+      
+        static string sha256(string password)
+        {
+            SHA256Managed crypt = new SHA256Managed();
+            string hash = String.Empty;
+            byte[] crypto = crypt.ComputeHash(Encoding.ASCII.GetBytes(password), 0, Encoding.ASCII.GetByteCount(password));
+            foreach (byte theByte in crypto)
+            {
+                hash += theByte.ToString("x2");
+            }
+            return hash;
         }
 	}
 }
