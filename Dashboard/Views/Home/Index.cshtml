@@ -6,17 +6,17 @@
 <div class="statisticsheadertext"> Statistieken</div>
 
 <div class="boxing">
-    <div class="statisticstext">33</div>
+    <div class="statisticstext">@ViewBag.appCount</div>
     <div class="statisticstextunder">Applicaties</div>
 </div>
 
 <div class="boxing">
-    <div class="statisticstext">412</div>
+    <div class="statisticstext">@ViewBag.devCount</div>
     <div class="statisticstextunder">Devices</div>
 </div>
 
 <div class="boxing">
-    <div class="statisticstext">399</div>
+    <div class="statisticstext">@ViewBag.crashCount</div>
     <div class="statisticstextunder">Crash Reports</div>
 </div>
 
@@ -26,23 +26,29 @@
         <a href="#" class="list-group-item active">
           List of Applications : 
         </a>
-
-        <a href="#" class="list-group-item">24*7 support</a>
-        <a href="#" class="list-group-item">Free Window Space hosting</a>
-        <a href="#" class="list-group-item">Number of Images</a>
-        <a href="#" class="list-group-item">Renewal cost per year</a>
-
+        @foreach (var item in ViewBag.applications)
+        {
+            <a href="#" class="list-group-item">@item.name</a>
+        }
     </div>
-    <div class="flex-item1"><div class="flex-item1" id="piechart2" style="width: 422px; height: auto;"></div></div>
+    <div class="flex-item1">
+        <div class="flex-item1" id="piechart" style=""></div>
+    </div>
 </div>
 
 <div class="flex-container">
  
     <div class="flex-item1">
-        <div class="flex-item1" id="piechart" style="width: 422px; height: auto;"></div>
+        
     </div>
     <div class="flex-item1">
-        Staafdiagram Fases Besturings systemen
+        <a href="#" class="list-group-item" style="background-color:orange">
+            Recent crash reports
+        </a>
+        @foreach (var item in ViewBag.applications)
+        {
+            <a href="#" class="list-group-item">@item.name</a>
+        }
     </div>
     <div class="flex-item1">
         <a href="#" class="list-group-item active">
@@ -50,6 +56,12 @@
         </a>
 
         <a href="#" class="list-group-item"><span class="badge">14</span>24*7 support</a>
+        <a href="#" class="list-group-item"><span class="badge">24</span>Free Window Space hosting</a>
+        <a href="#" class="list-group-item"><span class="badge">34</span>Number of Images</a>
+        <a href="#" class="list-group-item"><span class="badge">44</span>Renewal cost per year</a>
+        <a href="#" class="list-group-item"><span class="badge">24</span>Free Window Space hosting</a>
+        <a href="#" class="list-group-item"><span class="badge">34</span>Number of Images</a>
+        <a href="#" class="list-group-item"><span class="badge">44</span>Renewal cost per year</a>
         <a href="#" class="list-group-item"><span class="badge">24</span>Free Window Space hosting</a>
         <a href="#" class="list-group-item"><span class="badge">34</span>Number of Images</a>
         <a href="#" class="list-group-item"><span class="badge">44</span>Renewal cost per year</a>
@@ -70,18 +82,10 @@
           ['Watch TV', 2],
           ['Sleep', 7]
         ]);
-
-        var options = {
-            title: 'My Daily Activities'
-        };
-
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
 
-        chart.draw(data, options);
+        chart.draw(data);
 
 
-        var chart = new google.visualization.PieChart(document.getElementById('piechart2'));
-
-        chart.draw(data, options);
     }
 </script>

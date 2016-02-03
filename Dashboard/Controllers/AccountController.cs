@@ -31,7 +31,7 @@ namespace Dashboard.Controllers
             if (db.tblUsers.Where(c => c.loginName == model.UserName && c.password == hPassword).FirstOrDefault() != null)
             {
                 FormsAuthentication.SetAuthCookie(model.UserName, false);
-                return Redirect(ReturnUrl);
+                return RedirectToAction("Index", "Home");
             }
        
             return View();
