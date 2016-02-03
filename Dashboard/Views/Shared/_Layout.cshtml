@@ -28,7 +28,28 @@
             </div>
         </div>
     </div>
+
     <div class="container body-content">
+
+        <div class="indexheaderphoto"></div>
+        <div class="statisticsheadertext"> Statistieken</div>
+
+        <div class="boxing">
+            <div class="statisticstext">@ViewBag.appCount</div>
+            <div class="statisticstextunder">Applicaties</div>
+        </div>
+
+        <div class="boxing">
+            <div class="statisticstext">@ViewBag.devCount</div>
+            <div class="statisticstextunder">Devices</div>
+        </div>
+
+        <div class="boxing">
+            <div class="statisticstext">@ViewBag.crashCount</div>
+            <div class="statisticstextunder">Crash Reports</div>
+        </div>
+
+
         @RenderBody()
         <hr />
         <footer>

@@ -1,45 +1,48 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
-
-<div class="indexheaderphoto"></div>
-<div class="statisticsheadertext"> Statistieken</div>
-
-<div class="boxing">
-    <div class="statisticstext">@ViewBag.appCount</div>
-    <div class="statisticstextunder">Applicaties</div>
-</div>
-
-<div class="boxing">
-    <div class="statisticstext">@ViewBag.devCount</div>
-    <div class="statisticstextunder">Devices</div>
-</div>
-
-<div class="boxing">
-    <div class="statisticstext">@ViewBag.crashCount</div>
-    <div class="statisticstextunder">Crash Reports</div>
-</div>
-
-
+@Scripts.Render("~/bundles/jquery")
 <div class="flex-container">
-    <div class="flex-item2">
-        <a href="#" class="list-group-item active">
-          List of Applications : 
-        </a>
+
+    <div class="flex-item3">
+        <a class="list-group-item active"><span class="badge"></span>Klanten  </a>
+        <a href="#" class="list-group-item">4net</a>
         @foreach (var item in ViewBag.applications)
         {
             <a href="#" class="list-group-item">@item.name</a>
         }
     </div>
-    <div class="flex-item1">
-        <div class="flex-item1" id="piechart" style=""></div>
+
+    <div class="flex-item2">
+    
+        <a href="Application/Create" class="list-group-item active"><span class="badge"><p id="newapplication" class="glyphicon glyphicon-plus"></p></span> List of Applications : </a>
+        @foreach (var item in ViewBag.applications)
+        {
+            <a href="#" class="list-group-item">@item.name</a>
+        }
+    </div>
+    <div class="flex-item4">
+        <div id="piechart"></div>
     </div>
 </div>
 
 <div class="flex-container">
  
     <div class="flex-item1">
-        
+        <a href="#" class="list-group-item" style="background-color:lightgreen">
+            <p>Recent added devices</p>
+        </a>
+        @foreach (var item in ViewBag.applications)
+        {
+            <a href="#" class="list-group-item">@item.name</a>
+        }
+        <a href="#" class="list-group-item">24*7 support</a>
+        <a href="#" class="list-group-item">Free Window Space hosting</a>
+        <a href="#" class="list-group-item">Number of Images</a>
+        <a href="#" class="list-group-item">enewal cost per year</a>
+        <a href="#" class="list-group-item">Free Window Space hosting</a>
+        <a href="#" class="list-group-item">Number of Images</a>
+        <a href="#" class="list-group-item">Renewal cost per year</a>
     </div>
     <div class="flex-item1">
         <a href="#" class="list-group-item" style="background-color:orange">
@@ -70,22 +73,33 @@
 </div>
 
 <script type="text/javascript">
+
+
+
+    $("#document").ready(function () {
+     
+      
+
+    });
+
     google.charts.load('current', { 'packages': ['corechart'] });
     google.charts.setOnLoadCallback(drawChart);
     function drawChart() {
 
         var data = google.visualization.arrayToDataTable([
           ['Task', 'Hours per Day'],
-          ['Work', 11],
-          ['Eat', 2],
-          ['Commute', 2],
-          ['Watch TV', 2],
-          ['Sleep', 7]
+          ['Android', 11],
+          ['iOS', 2]
+
         ]);
+
+        var options = {
+            title: "Besturing Systemen"
+        };
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
 
-        chart.draw(data);
-
+        chart.draw(data, options);
 
     }
+    
 </script>

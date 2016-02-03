@@ -26,7 +26,7 @@ textarea {
   width:auto;
   background-repeat: no-repeat;
   height:400px;
-  background: url('Images/placeholder.jpg');
+  background: url('Images/4netinteractive.png');
 }
 .flex-container {
     display: -webkit-flex;
@@ -83,11 +83,28 @@ textarea {
 }
 .flex-item2 {
     background-color: white;
-    min-width: 60%;
+    width: auto;
     height: auto;
-    flex-grow: 2;
-    margin :10px;
+    flex-grow: 1;
+    margin:10px;
 }
+
+.flex-item3 {
+    background-color: white;
+    width: auto;
+    height: auto;
+    flex-grow: 1;
+    margin:10px;
+}
+.flex-item4 {
+    background-color: white;
+    width: 10%;
+    min-width: 10%;
+    height: auto;
+    flex-grow: 1;
+    margin:10px;
+}
+
 
 /* styles for validation helpers */
 .field-validation-error {
