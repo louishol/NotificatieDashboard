@@ -24,12 +24,10 @@
 <div class="flex-container">
     <div class="flex-item2">
         <a href="#" class="list-group-item active">
-          List of Applications : 
+            Laatst gebruikt :
+
+
         </a>
-        @foreach (var item in ViewBag.applications)
-        {
-            <a href="#" class="list-group-item">@item.name</a>
-        }
     </div>
     <div class="flex-item1">
         <div class="flex-item1" id="piechart" style=""></div>
@@ -37,34 +35,14 @@
 </div>
 
 <div class="flex-container">
- 
     <div class="flex-item1">
-        
-    </div>
-    <div class="flex-item1">
-        <a href="#" class="list-group-item" style="background-color:orange">
-            Recent crash reports
+        <a href="#" class="list-group-item active">
+        Alle applicaties:
         </a>
         @foreach (var item in ViewBag.applications)
         {
             <a href="#" class="list-group-item">@item.name</a>
         }
-    </div>
-    <div class="flex-item1">
-        <a href="#" class="list-group-item active">
-            Popular Apps :
-        </a>
-
-        <a href="#" class="list-group-item"><span class="badge">14</span>24*7 support</a>
-        <a href="#" class="list-group-item"><span class="badge">24</span>Free Window Space hosting</a>
-        <a href="#" class="list-group-item"><span class="badge">34</span>Number of Images</a>
-        <a href="#" class="list-group-item"><span class="badge">44</span>Renewal cost per year</a>
-        <a href="#" class="list-group-item"><span class="badge">24</span>Free Window Space hosting</a>
-        <a href="#" class="list-group-item"><span class="badge">34</span>Number of Images</a>
-        <a href="#" class="list-group-item"><span class="badge">44</span>Renewal cost per year</a>
-        <a href="#" class="list-group-item"><span class="badge">24</span>Free Window Space hosting</a>
-        <a href="#" class="list-group-item"><span class="badge">34</span>Number of Images</a>
-        <a href="#" class="list-group-item"><span class="badge">44</span>Renewal cost per year</a>
 
     </div>
 </div>

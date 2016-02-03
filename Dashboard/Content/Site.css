@@ -30,11 +30,13 @@ textarea {
 }
 .flex-container {
     display: -webkit-flex;
-    display: flex;
     width: auto;
-    min-height: 240px;
+
     background-color: lightgrey;
 }
+
+
+
 .statisticsheadertext {
     font-family: "Times New Roman", Times, serif;
     font-size: 40px;
