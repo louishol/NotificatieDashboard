@@ -29,8 +29,10 @@ namespace Dashboard.Models
         public string repeatVersion { get; set; }
         public int tblOperatingSystems_operatingSystemId { get; set; }
         public int tblPhases_phaseId { get; set; }
+        public int tblCustomers_customerId { get; set; }
     
         public virtual tblOperatingSystems tblOperatingSystems { get; set; }
+        public virtual tblCustomers tblCustomers { get; set; }
         public virtual tblPhases tblPhases { get; set; }
         public virtual ICollection<tblDevices> tblDevices { get; set; }
         public virtual ICollection<tblMessages> tblMessages { get; set; }

@@ -35,13 +35,58 @@ textarea {
     height: 250px;
     background-color: lightgrey;
 }
-.flex-item {
+.statisticsheadertext {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 40px;
+    letter-spacing: 3px;
+    margin-bottom: 25px;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    vertical-align:middle
+}
+.statisticstext {
+    color: #021f54;
+    font-family: "Abril Fatface";
+    letter-spacing: 5px;
+    font-weight: bold;
+    font-size: 45px;
+    display: inline-block;
+
+    white-space: nowrap;
+    margin-left: 15%;
+}
+.boxing {
+    display: inline-block;
+    box-sizing: border-box;
+    margin-left: 10%;
+}
+.statisticstextunder {
+    color: #021f54;
+    font-family: "Abril Fatface";
+    letter-spacing: 5px;
+    font-weight: bold;
+    font-size: 15px;
+    /*display: inline-block;*/
+
+    white-space: nowrap;
+    margin-left: 15%;
+}
+
+
+.flex-item1 {
     background-color: aliceblue;
-    width: 600px;
-    height: 150px;
-    margin-left: 40px;
-    margin-top: 40px;
-    margin-right:40px;
+    width: auto;
+    height: auto;
+    flex-grow: 1;
+    margin:10px;
+}
+.flex-item2 {
+    background-color: aliceblue;
+    width: auto;
+    height: auto;
+    flex-grow: 2;
+    margin :10px;
 }
 
 /* styles for validation helpers */

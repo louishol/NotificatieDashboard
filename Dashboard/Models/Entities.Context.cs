@@ -28,10 +28,12 @@ namespace Dashboard.Models
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<tblApplications> tblApplications { get; set; }
         public virtual DbSet<tblCrashReports> tblCrashReports { get; set; }
+        public virtual DbSet<tblCustomers> tblCustomers { get; set; }
         public virtual DbSet<tblDevices> tblDevices { get; set; }
         public virtual DbSet<tblLanguageCodes> tblLanguageCodes { get; set; }
         public virtual DbSet<tblMessages> tblMessages { get; set; }
         public virtual DbSet<tblOperatingSystems> tblOperatingSystems { get; set; }
         public virtual DbSet<tblPhases> tblPhases { get; set; }
+        public virtual DbSet<tblUsers> tblUsers { get; set; }
     }
 }

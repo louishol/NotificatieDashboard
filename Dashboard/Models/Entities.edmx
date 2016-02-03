@@ -28,6 +28,7 @@
           <Property Name="repeatVersion" Type="nchar" MaxLength="15" Nullable="false" />
           <Property Name="tblOperatingSystems_operatingSystemId" Type="int" Nullable="false" />
           <Property Name="tblPhases_phaseId" Type="int" Nullable="false" />
+          <Property Name="tblCustomers_customerId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="tblCrashReports">
           <Key>
@@ -37,6 +38,17 @@
           <Property Name="report" Type="nchar" MaxLength="200" Nullable="false" />
           <Property Name="date" Type="datetime" Nullable="false" />
           <Property Name="tblDevices_deviceId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblCustomers">
+          <Key>
+            <PropertyRef Name="customerId" />
+          </Key>
+          <Property Name="customerId" Type="int" Nullable="false" />
+          <Property Name="firstName" Type="varchar" MaxLength="50" />
+          <Property Name="lastName" Type="varchar" MaxLength="50" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="address" Type="varchar" MaxLength="50" />
+          <Property Name="dateCreated" Type="datetime" />
         </EntityType>
         <EntityType Name="tblDevices">
           <Key>
@@ -80,6 +92,17 @@
           <Property Name="phaseId" Type="int" Nullable="false" />
           <Property Name="name" Type="nchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="tblUsers">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="int" Nullable="false" />
+          <Property Name="loginName" Type="varchar" MaxLength="45" />
+          <Property Name="password" Type="varchar" MaxLength="45" />
+          <Property Name="lastLogin" Type="datetime" />
+          <Property Name="dateCreated" Type="datetime" />
+          <Property Name="name" Type="varchar" MaxLength="45" />
+        </EntityType>
         <Association Name="fk_tblApplication_tblOperatingSystem1">
           <End Role="tblOperatingSystems" Type="Self.tblOperatingSystems" Multiplicity="1" />
           <End Role="tblApplications" Type="Self.tblApplications" Multiplicity="*" />
@@ -92,8 +115,24 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_tblApplications_tblCustomers1">
+          <End Role="tblCustomers" Type="Self.tblCustomers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblApplications" Type="Self.tblApplications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCustomers">
+              <PropertyRef Name="customerId" />
+            </Principal>
+            <Dependent Role="tblApplications">
+              <PropertyRef Name="tblCustomers_customerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_tblApplications_tblPhase1">
-          <End Role="tblPhases" Type="Self.tblPhases" Multiplicity="1" />
+          <End Role="tblPhases" Type="Self.tblPhases" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="tblApplications" Type="Self.tblApplications" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblPhases">
@@ -105,7 +144,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_tblCrashReport_tblDevice1">
-          <End Role="tblDevices" Type="Self.tblDevices" Multiplicity="1" />
+          <End Role="tblDevices" Type="Self.tblDevices" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="tblCrashReports" Type="Self.tblCrashReports" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblDevices">
@@ -117,7 +158,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_tblDevice_tblApplication1">
-          <End Role="tblApplications" Type="Self.tblApplications" Multiplicity="1" />
+          <End Role="tblApplications" Type="Self.tblApplications" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="tblDevices" Type="Self.tblDevices" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblApplications">
@@ -129,7 +172,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_tblMessage_tbLanguageCodes1">
-          <End Role="tblLanguageCodes" Type="Self.tblLanguageCodes" Multiplicity="1" />
+          <End Role="tblLanguageCodes" Type="Self.tblLanguageCodes" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="tblMessages" Type="Self.tblMessages" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblLanguageCodes">
@@ -141,7 +186,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_tblMessage_tblApplication1">
-          <End Role="tblApplications" Type="Self.tblApplications" Multiplicity="1" />
+          <End Role="tblApplications" Type="Self.tblApplications" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="tblMessages" Type="Self.tblMessages" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblApplications">
@@ -156,13 +203,19 @@
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblApplications" EntityType="Self.tblApplications" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblCrashReports" EntityType="Self.tblCrashReports" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCustomers" EntityType="Self.tblCustomers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblDevices" EntityType="Self.tblDevices" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblLanguageCodes" EntityType="Self.tblLanguageCodes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblMessages" EntityType="Self.tblMessages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblOperatingSystems" EntityType="Self.tblOperatingSystems" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblPhases" EntityType="Self.tblPhases" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUsers" EntityType="Self.tblUsers" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="fk_tblApplication_tblOperatingSystem1" Association="Self.fk_tblApplication_tblOperatingSystem1">
             <End Role="tblOperatingSystems" EntitySet="tblOperatingSystems" />
+            <End Role="tblApplications" EntitySet="tblApplications" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tblApplications_tblCustomers1" Association="Self.fk_tblApplications_tblCustomers1">
+            <End Role="tblCustomers" EntitySet="tblCustomers" />
             <End Role="tblApplications" EntitySet="tblApplications" />
           </AssociationSet>
           <AssociationSet Name="fk_tblApplications_tblPhase1" Association="Self.fk_tblApplications_tblPhase1">
@@ -214,7 +267,9 @@
           <Property Name="repeatVersion" Type="String" MaxLength="15" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="tblOperatingSystems_operatingSystemId" Type="Int32" Nullable="false" />
           <Property Name="tblPhases_phaseId" Type="Int32" Nullable="false" />
+          <Property Name="tblCustomers_customerId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="tblOperatingSystems" Relationship="Self.fk_tblApplication_tblOperatingSystem1" FromRole="tblApplications" ToRole="tblOperatingSystems" />
+          <NavigationProperty Name="tblCustomers" Relationship="Self.fk_tblApplications_tblCustomers1" FromRole="tblApplications" ToRole="tblCustomers" />
           <NavigationProperty Name="tblPhases" Relationship="Self.fk_tblApplications_tblPhase1" FromRole="tblApplications" ToRole="tblPhases" />
           <NavigationProperty Name="tblDevices" Relationship="Self.fk_tblDevice_tblApplication1" FromRole="tblApplications" ToRole="tblDevices" />
           <NavigationProperty Name="tblMessages" Relationship="Self.fk_tblMessage_tblApplication1" FromRole="tblApplications" ToRole="tblMessages" />
@@ -228,6 +283,18 @@
           <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="tblDevices_deviceId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="tblDevices" Relationship="Self.fk_tblCrashReport_tblDevice1" FromRole="tblCrashReports" ToRole="tblDevices" />
+        </EntityType>
+        <EntityType Name="tblCustomers">
+          <Key>
+            <PropertyRef Name="customerId" />
+          </Key>
+          <Property Name="customerId" Type="Int32" Nullable="false" />
+          <Property Name="firstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="lastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="dateCreated" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tblApplications" Relationship="Self.fk_tblApplications_tblCustomers1" FromRole="tblCustomers" ToRole="tblApplications" />
         </EntityType>
         <EntityType Name="tblDevices">
           <Key>
@@ -278,6 +345,17 @@
           <Property Name="name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
           <NavigationProperty Name="tblApplications" Relationship="Self.fk_tblApplications_tblPhase1" FromRole="tblPhases" ToRole="tblApplications" />
         </EntityType>
+        <EntityType Name="tblUsers">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="Int32" Nullable="false" />
+          <Property Name="loginName" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="lastLogin" Type="DateTime" Precision="3" />
+          <Property Name="dateCreated" Type="DateTime" Precision="3" />
+          <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+        </EntityType>
         <Association Name="fk_tblApplication_tblOperatingSystem1">
           <End Role="tblOperatingSystems" Type="Self.tblOperatingSystems" Multiplicity="1" />
           <End Role="tblApplications" Type="Self.tblApplications" Multiplicity="*" />
@@ -290,8 +368,24 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_tblApplications_tblCustomers1">
+          <End Role="tblCustomers" Type="Self.tblCustomers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblApplications" Type="Self.tblApplications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCustomers">
+              <PropertyRef Name="customerId" />
+            </Principal>
+            <Dependent Role="tblApplications">
+              <PropertyRef Name="tblCustomers_customerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_tblApplications_tblPhase1">
-          <End Role="tblPhases" Type="Self.tblPhases" Multiplicity="1" />
+          <End Role="tblPhases" Type="Self.tblPhases" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="tblApplications" Type="Self.tblApplications" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblPhases">
@@ -303,7 +397,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_tblDevice_tblApplication1">
-          <End Role="tblApplications" Type="Self.tblApplications" Multiplicity="1" />
+          <End Role="tblApplications" Type="Self.tblApplications" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="tblDevices" Type="Self.tblDevices" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblApplications">
@@ -315,7 +411,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_tblMessage_tblApplication1">
-          <End Role="tblApplications" Type="Self.tblApplications" Multiplicity="1" />
+          <End Role="tblApplications" Type="Self.tblApplications" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="tblMessages" Type="Self.tblMessages" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblApplications">
@@ -327,7 +425,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_tblCrashReport_tblDevice1">
-          <End Role="tblDevices" Type="Self.tblDevices" Multiplicity="1" />
+          <End Role="tblDevices" Type="Self.tblDevices" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="tblCrashReports" Type="Self.tblCrashReports" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblDevices">
@@ -339,7 +439,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_tblMessage_tbLanguageCodes1">
-          <End Role="tblLanguageCodes" Type="Self.tblLanguageCodes" Multiplicity="1" />
+          <End Role="tblLanguageCodes" Type="Self.tblLanguageCodes" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="tblMessages" Type="Self.tblMessages" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblLanguageCodes">
@@ -354,13 +456,19 @@
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="tblApplications" EntityType="Self.tblApplications" />
           <EntitySet Name="tblCrashReports" EntityType="Self.tblCrashReports" />
+          <EntitySet Name="tblCustomers" EntityType="Self.tblCustomers" />
           <EntitySet Name="tblDevices" EntityType="Self.tblDevices" />
           <EntitySet Name="tblLanguageCodes" EntityType="Self.tblLanguageCodes" />
           <EntitySet Name="tblMessages" EntityType="Self.tblMessages" />
           <EntitySet Name="tblOperatingSystems" EntityType="Self.tblOperatingSystems" />
           <EntitySet Name="tblPhases" EntityType="Self.tblPhases" />
+          <EntitySet Name="tblUsers" EntityType="Self.tblUsers" />
           <AssociationSet Name="fk_tblApplication_tblOperatingSystem1" Association="Self.fk_tblApplication_tblOperatingSystem1">
             <End Role="tblOperatingSystems" EntitySet="tblOperatingSystems" />
+            <End Role="tblApplications" EntitySet="tblApplications" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tblApplications_tblCustomers1" Association="Self.fk_tblApplications_tblCustomers1">
+            <End Role="tblCustomers" EntitySet="tblCustomers" />
             <End Role="tblApplications" EntitySet="tblApplications" />
           </AssociationSet>
           <AssociationSet Name="fk_tblApplications_tblPhase1" Association="Self.fk_tblApplications_tblPhase1">
@@ -413,6 +521,7 @@
                 <ScalarProperty Name="repeatVersion" ColumnName="repeatVersion" />
                 <ScalarProperty Name="tblOperatingSystems_operatingSystemId" ColumnName="tblOperatingSystems_operatingSystemId" />
                 <ScalarProperty Name="tblPhases_phaseId" ColumnName="tblPhases_phaseId" />
+                <ScalarProperty Name="tblCustomers_customerId" ColumnName="tblCustomers_customerId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -423,6 +532,18 @@
                 <ScalarProperty Name="report" ColumnName="report" />
                 <ScalarProperty Name="date" ColumnName="date" />
                 <ScalarProperty Name="tblDevices_deviceId" ColumnName="tblDevices_deviceId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCustomers">
+            <EntityTypeMapping TypeName="AppVersionCheckModel.tblCustomers">
+              <MappingFragment StoreEntitySet="tblCustomers">
+                <ScalarProperty Name="customerId" ColumnName="customerId" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="dateCreated" ColumnName="dateCreated" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -469,6 +590,18 @@
             <EntityTypeMapping TypeName="AppVersionCheckModel.tblPhases">
               <MappingFragment StoreEntitySet="tblPhases">
                 <ScalarProperty Name="phaseId" ColumnName="phaseId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUsers">
+            <EntityTypeMapping TypeName="AppVersionCheckModel.tblUsers">
+              <MappingFragment StoreEntitySet="tblUsers">
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="loginName" ColumnName="loginName" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="lastLogin" ColumnName="lastLogin" />
+                <ScalarProperty Name="dateCreated" ColumnName="dateCreated" />
                 <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
