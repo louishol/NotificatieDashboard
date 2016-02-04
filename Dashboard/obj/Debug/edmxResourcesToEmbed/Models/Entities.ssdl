@@ -1,25 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="AppVersionCheckModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityType Name="sysdiagrams">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-    <Property Name="principal_id" Type="int" Nullable="false" />
-    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="version" Type="int" />
-    <Property Name="definition" Type="varbinary(max)" />
-  </EntityType>
   <EntityType Name="tblApplications">
     <Key>
       <PropertyRef Name="applicationId" />
     </Key>
-    <Property Name="applicationId" Type="int" Nullable="false" />
+    <Property Name="applicationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="name" Type="nchar" MaxLength="50" Nullable="false" />
     <Property Name="repeatable" Type="bit" Nullable="false" />
     <Property Name="version" Type="nchar" MaxLength="15" Nullable="false" />
     <Property Name="uniqueId" Type="nchar" MaxLength="50" Nullable="false" />
-    <Property Name="url" Type="nchar" MaxLength="200" Nullable="false" />
+    <Property Name="url" Type="nchar" MaxLength="200" />
     <Property Name="repeatVersion" Type="nchar" MaxLength="15" Nullable="false" />
     <Property Name="tblOperatingSystems_operatingSystemId" Type="int" Nullable="false" />
     <Property Name="tblPhases_phaseId" Type="int" Nullable="false" />
@@ -29,7 +19,7 @@
     <Key>
       <PropertyRef Name="crashReportId" />
     </Key>
-    <Property Name="crashReportId" Type="int" Nullable="false" />
+    <Property Name="crashReportId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="report" Type="nchar" MaxLength="200" Nullable="false" />
     <Property Name="date" Type="datetime" Nullable="false" />
     <Property Name="tblDevices_deviceId" Type="int" Nullable="false" />
@@ -38,9 +28,9 @@
     <Key>
       <PropertyRef Name="customerId" />
     </Key>
-    <Property Name="customerId" Type="int" Nullable="false" />
-    <Property Name="firstName" Type="varchar" MaxLength="50" />
-    <Property Name="lastName" Type="varchar" MaxLength="50" />
+    <Property Name="customerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="contactPerson" Type="varchar" MaxLength="50" />
+    <Property Name="companyName" Type="varchar" MaxLength="50" />
     <Property Name="email" Type="varchar" MaxLength="50" />
     <Property Name="address" Type="varchar" MaxLength="50" />
     <Property Name="dateCreated" Type="datetime" />
@@ -49,7 +39,7 @@
     <Key>
       <PropertyRef Name="deviceId" />
     </Key>
-    <Property Name="deviceId" Type="int" Nullable="false" />
+    <Property Name="deviceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="operatingSystemVersion" Type="nchar" MaxLength="50" />
     <Property Name="appVersion" Type="nchar" MaxLength="15" Nullable="false" />
     <Property Name="uniqueId" Type="nchar" MaxLength="50" Nullable="false" />
@@ -61,14 +51,14 @@
     <Key>
       <PropertyRef Name="languageId" />
     </Key>
-    <Property Name="languageId" Type="int" Nullable="false" />
+    <Property Name="languageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="name" Type="nchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="tblMessages">
     <Key>
       <PropertyRef Name="applicationId" />
     </Key>
-    <Property Name="applicationId" Type="int" Nullable="false" />
+    <Property Name="applicationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="message" Type="nchar" MaxLength="200" Nullable="false" />
     <Property Name="tblApplications_applicationId" Type="int" Nullable="false" />
     <Property Name="tbLanguageCodes_languageId" Type="int" Nullable="false" />
@@ -77,23 +67,23 @@
     <Key>
       <PropertyRef Name="operatingSystemId" />
     </Key>
-    <Property Name="operatingSystemId" Type="int" Nullable="false" />
+    <Property Name="operatingSystemId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="name" Type="nchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="tblPhases">
     <Key>
       <PropertyRef Name="phaseId" />
     </Key>
-    <Property Name="phaseId" Type="int" Nullable="false" />
+    <Property Name="phaseId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="name" Type="nchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="tblUsers">
     <Key>
       <PropertyRef Name="userId" />
     </Key>
-    <Property Name="userId" Type="int" Nullable="false" />
+    <Property Name="userId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="loginName" Type="varchar" MaxLength="45" />
-    <Property Name="password" Type="varchar" MaxLength="45" />
+    <Property Name="password" Type="varchar" MaxLength="200" />
     <Property Name="lastLogin" Type="datetime" />
     <Property Name="dateCreated" Type="datetime" />
     <Property Name="name" Type="varchar" MaxLength="45" />
@@ -195,7 +185,6 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="AppVersionCheckModelStoreContainer">
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tblApplications" EntityType="Self.tblApplications" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tblCrashReports" EntityType="Self.tblCrashReports" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tblCustomers" EntityType="Self.tblCustomers" Schema="dbo" store:Type="Tables" />

@@ -1,25 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="AppVersionCheckModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityType Name="sysdiagrams">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="principal_id" Type="Int32" Nullable="false" />
-    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="version" Type="Int32" />
-    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-  </EntityType>
   <EntityType Name="tblApplications">
     <Key>
       <PropertyRef Name="applicationId" />
     </Key>
-    <Property Name="applicationId" Type="Int32" Nullable="false" />
+    <Property Name="applicationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
     <Property Name="repeatable" Type="Boolean" Nullable="false" />
     <Property Name="version" Type="String" MaxLength="15" FixedLength="true" Unicode="true" Nullable="false" />
     <Property Name="uniqueId" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
-    <Property Name="url" Type="String" MaxLength="200" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="url" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
     <Property Name="repeatVersion" Type="String" MaxLength="15" FixedLength="true" Unicode="true" Nullable="false" />
     <Property Name="tblOperatingSystems_operatingSystemId" Type="Int32" Nullable="false" />
     <Property Name="tblPhases_phaseId" Type="Int32" Nullable="false" />
@@ -34,7 +24,7 @@
     <Key>
       <PropertyRef Name="crashReportId" />
     </Key>
-    <Property Name="crashReportId" Type="Int32" Nullable="false" />
+    <Property Name="crashReportId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="report" Type="String" MaxLength="200" FixedLength="true" Unicode="true" Nullable="false" />
     <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="tblDevices_deviceId" Type="Int32" Nullable="false" />
@@ -44,9 +34,9 @@
     <Key>
       <PropertyRef Name="customerId" />
     </Key>
-    <Property Name="customerId" Type="Int32" Nullable="false" />
-    <Property Name="firstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="lastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="customerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="contactPerson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="companyName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="dateCreated" Type="DateTime" Precision="3" />
@@ -56,7 +46,7 @@
     <Key>
       <PropertyRef Name="deviceId" />
     </Key>
-    <Property Name="deviceId" Type="Int32" Nullable="false" />
+    <Property Name="deviceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="operatingSystemVersion" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
     <Property Name="appVersion" Type="String" MaxLength="15" FixedLength="true" Unicode="true" Nullable="false" />
     <Property Name="uniqueId" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
@@ -70,7 +60,7 @@
     <Key>
       <PropertyRef Name="languageId" />
     </Key>
-    <Property Name="languageId" Type="Int32" Nullable="false" />
+    <Property Name="languageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
     <NavigationProperty Name="tblMessages" Relationship="Self.fk_tblMessage_tbLanguageCodes1" FromRole="tblLanguageCodes" ToRole="tblMessages" />
   </EntityType>
@@ -78,7 +68,7 @@
     <Key>
       <PropertyRef Name="applicationId" />
     </Key>
-    <Property Name="applicationId" Type="Int32" Nullable="false" />
+    <Property Name="applicationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="message" Type="String" MaxLength="200" FixedLength="true" Unicode="true" Nullable="false" />
     <Property Name="tblApplications_applicationId" Type="Int32" Nullable="false" />
     <Property Name="tbLanguageCodes_languageId" Type="Int32" Nullable="false" />
@@ -89,7 +79,7 @@
     <Key>
       <PropertyRef Name="operatingSystemId" />
     </Key>
-    <Property Name="operatingSystemId" Type="Int32" Nullable="false" />
+    <Property Name="operatingSystemId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
     <NavigationProperty Name="tblApplications" Relationship="Self.fk_tblApplication_tblOperatingSystem1" FromRole="tblOperatingSystems" ToRole="tblApplications" />
   </EntityType>
@@ -97,7 +87,7 @@
     <Key>
       <PropertyRef Name="phaseId" />
     </Key>
-    <Property Name="phaseId" Type="Int32" Nullable="false" />
+    <Property Name="phaseId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
     <NavigationProperty Name="tblApplications" Relationship="Self.fk_tblApplications_tblPhase1" FromRole="tblPhases" ToRole="tblApplications" />
   </EntityType>
@@ -105,9 +95,9 @@
     <Key>
       <PropertyRef Name="userId" />
     </Key>
-    <Property Name="userId" Type="Int32" Nullable="false" />
+    <Property Name="userId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="loginName" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-    <Property Name="password" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
     <Property Name="lastLogin" Type="DateTime" Precision="3" />
     <Property Name="dateCreated" Type="DateTime" Precision="3" />
     <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
@@ -209,7 +199,6 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="AppVersionCheckEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
     <EntitySet Name="tblApplications" EntityType="Self.tblApplications" />
     <EntitySet Name="tblCrashReports" EntityType="Self.tblCrashReports" />
     <EntitySet Name="tblCustomers" EntityType="Self.tblCustomers" />

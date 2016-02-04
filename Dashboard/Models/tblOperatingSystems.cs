@@ -11,6 +11,7 @@ namespace Dashboard.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     
     public partial class tblOperatingSystems
     {
@@ -19,7 +20,9 @@ namespace Dashboard.Models
             this.tblApplications = new HashSet<tblApplications>();
         }
     
+        
         public int operatingSystemId { get; set; }
+          [DisplayName("Besturingssysteem")]
         public string name { get; set; }
     
         public virtual ICollection<tblApplications> tblApplications { get; set; }

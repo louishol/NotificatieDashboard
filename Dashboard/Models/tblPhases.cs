@@ -11,6 +11,7 @@ namespace Dashboard.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     
     public partial class tblPhases
     {
@@ -20,6 +21,7 @@ namespace Dashboard.Models
         }
     
         public int phaseId { get; set; }
+        [DisplayName("Fase")]
         public string name { get; set; }
     
         public virtual ICollection<tblApplications> tblApplications { get; set; }

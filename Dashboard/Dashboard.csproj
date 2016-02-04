@@ -163,9 +163,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AccountControllerBackup.cs" />
     <Compile Include="Controllers\ApplicationController.cs" />
-    <Compile Include="Controllers\ddwdwdController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\testController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -186,9 +184,6 @@
       <DependentUpon>Entities.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\sysdiagrams.cs">
-      <DependentUpon>Entities.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\tblApplications.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
