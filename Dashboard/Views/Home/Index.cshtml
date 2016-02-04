@@ -5,7 +5,9 @@
 <div class="flex-container">
 
     <div class="flex-item">
-        <a class="list-group-item active"><span class="badge"></span>Klanten</a>
+
+        <a href="/Customer/Create" class="list-group-item active"><span style="float: right"><p class="glyphicon glyphicon-plus"></p></span> Klanten</a>
+
         @foreach (var item in ViewBag.customers)
         {
             @Html.ActionLink((String)item.companyName, "Details", "Customer", new { id = item.customerId }, new { @class = "list-group-item" });
@@ -13,7 +15,7 @@
         }
     </div>
     <div class="flex-item">
-        <a href="/Application/Create" class="list-group-item active"><span class="badge"><p id="newapplication" class="glyphicon glyphicon-plus"></p></span> Applicaties</a>
+        <a href="/Application/Create" class="list-group-item active"><span style="float: right"><p id="newapplication" class="glyphicon glyphicon-plus"></p></span> Applicaties</a>
         @foreach (var item in ViewBag.applications)
         {   
             @Html.ActionLink((String)item.name, "Details", "Application", new { id = item.applicationId}, new { @class = "list-group-item" });
