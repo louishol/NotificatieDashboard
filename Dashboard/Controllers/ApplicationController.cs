@@ -14,7 +14,7 @@ namespace Dashboard.Controllers
         {
             ViewBag.OS = new SelectList(db.tblOperatingSystems, "operatingSystemId", "name");
             ViewBag.phase = new SelectList(db.tblPhases, "phaseId", "name");
-            ViewBag.customer = new SelectList(db.tblCustomers, "customerId", "contactPerson");
+            ViewBag.customer = new SelectList(db.tblCustomers, "customerId", "companyName");
             return View();
         }
 
@@ -31,8 +31,8 @@ namespace Dashboard.Controllers
             }
 
             ViewBag.OS = new SelectList(db.tblOperatingSystems, "operatingSystemId", "name");
-            ViewBag.phase = new SelectList(db.tblPhases, "phaseId", "name");
-            ViewBag.customer = new SelectList(db.tblCustomers, "customerId", "contactPerson");
+            ViewBag.phase = new SelectList(db.tblPhases, "phaseId", "name");    
+            ViewBag.customer = new SelectList(db.tblCustomers, "customerId", "companyName");
 
             return View();
         }
