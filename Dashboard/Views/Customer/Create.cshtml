@@ -1,0 +1,45 @@
+﻿@model Dashboard.Models.tblCustomers
+
+@{
+    ViewBag.Title = "Create";
+}
+
+@using (Html.BeginForm())
+{
+    <div>
+        @Html.AntiForgeryToken()
+
+        <a class="list-group-item active">Voeg een nieuwe klant toe</a>
+        <div class="list-group-item">
+            @Html.DisplayNameFor(model => model.contactPerson) :
+            @Html.TextBoxFor(model => model.contactPerson,
+        new { @class = "form-control" }) @Html.ValidationMessageFor(model => model.contactPerson)
+    </div>
+    <div class="list-group-item">
+        @Html.DisplayNameFor(model => model.companyName) :
+        @Html.TextBoxFor(model => model.companyName,
+        new { @class = "form-control" }) @Html.ValidationMessageFor(model => model.companyName)
+    </div>
+    <div class="list-group-item">
+        @Html.DisplayNameFor(model => model.email) :
+        @Html.TextBoxFor(model => model.email,
+        new { @class = "checkbox" }) @Html.ValidationMessageFor(model => model.email)
+    </div>
+    <div class="list-group-item">
+        @Html.DisplayNameFor(model => model.address) :
+        @Html.TextBoxFor(model => model.address,
+        new { @class = "form-control" }) @Html.ValidationMessageFor(model => model.address)
+    </div>
+    <br />
+    <div class="form-group">
+        <div>
+            <input type="submit" value="Create" class="btn btn-default" />
+            <input type="button" onclick="history.back();" value="Terug" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

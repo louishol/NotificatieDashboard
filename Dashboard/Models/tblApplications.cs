@@ -34,8 +34,11 @@ namespace Dashboard.Models
         public string url { get; set; }
           [DisplayName("Bericht herhalen vanaf")]
         public string repeatVersion { get; set; }
+        [DisplayName("Besturingssyteem")]
         public int tblOperatingSystems_operatingSystemId { get; set; }
+        [DisplayName("Fase")]
         public int tblPhases_phaseId { get; set; }
+        [DisplayName("Klant")]
         public int tblCustomers_customerId { get; set; }
     
         public virtual tblOperatingSystems tblOperatingSystems { get; set; }

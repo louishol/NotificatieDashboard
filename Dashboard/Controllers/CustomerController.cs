@@ -49,16 +49,17 @@ namespace Dashboard.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="customerId,contactPerson,companyName,email,address,dateCreated")] tblCustomers tblcustomers)
+        public ActionResult Create([Bind(Include="contactPerson,companyName,email,address")] tblCustomers tblcustomers)
         {
             if (ModelState.IsValid)
             {
+                tblcustomers.dateCreated = DateTime.Now;
                 db.tblCustomers.Add(tblcustomers);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(tblcustomers);
+            return View();
         }
 
         // GET: /Customer/Edit/5
