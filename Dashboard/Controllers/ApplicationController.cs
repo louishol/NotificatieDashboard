@@ -10,7 +10,32 @@ namespace Dashboard.Controllers
     public class ApplicationController : Controller
     {
         private AppVersionCheckEntities db = new AppVersionCheckEntities();
+        public ActionResult Create()
+        {
+            ViewBag.OS = new SelectList(db.tblOperatingSystems, "operatingSystemId", "name");
+            ViewBag.phase = new SelectList(db.tblPhases, "phaseId", "name");
+            ViewBag.customer = new SelectList(db.tblCustomers, "customerId", "contactPerson");
+            return View();
+        }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "name,repeatable,version,uniqueId,url,repeatVersion,tblOperatingSystems_operatingSystemId,tblPhases_phaseId,tblCustomers_customerId")] tblApplications tblapplications)
+        {
+
+            if (ModelState.IsValid)
+            {
+                db.tblApplications.Add(tblapplications);
+                db.SaveChanges();
+                return RedirectToAction("Index", "Home");
+            }
+
+            ViewBag.OS = new SelectList(db.tblOperatingSystems, "operatingSystemId", "name");
+            ViewBag.phase = new SelectList(db.tblPhases, "phaseId", "name");
+            ViewBag.customer = new SelectList(db.tblCustomers, "customerId", "contactPerson");
+
+            return View();
+        }
         //
         // GET: /Application/
         public ActionResult Index()
