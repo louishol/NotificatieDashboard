@@ -23,7 +23,9 @@ namespace Dashboard.Controllers
 
             ViewBag.applications = db.tblApplications.ToList();
             ViewBag.customers = db.tblCustomers.ToList();
-         
+            var dateweekago = DateTime.Now.AddDays(-7);
+            ViewBag.devices = db.tblDevices.Where(d => d.insertDate > dateweekago).ToList();
+
             string query = "Select applicationId, name, COUNT(*) as devices from tblApplications join tblDevices on tblDevices.tblApplications_applicationId = tblApplications.applicationId group by name, applicationId order by devices DESC";
             ViewBag.popularApplications = db.Database.SqlQuery<PopularApp>(query).ToList();
 
