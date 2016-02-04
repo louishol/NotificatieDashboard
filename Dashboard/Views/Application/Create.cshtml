@@ -1,0 +1,106 @@
+﻿@model Dashboard.Models.tblApplications
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Voeg een nieuwe applicatie toe</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.name, "Naam: ", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.name)
+                @Html.ValidationMessageFor(model => model.name)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.repeatable, "Herhaalbaar: ", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.repeatable)
+                @Html.ValidationMessageFor(model => model.repeatable)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.version, "Versie: ", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.version)
+                @Html.ValidationMessageFor(model => model.version)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.uniqueId, "Unieke ID: ", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.uniqueId)
+                @Html.ValidationMessageFor(model => model.uniqueId)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.url, "Update url: ", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.url)
+                @Html.ValidationMessageFor(model => model.url)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.repeatVersion, "Versie herhalen: ", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.repeatVersion)
+                @Html.ValidationMessageFor(model => model.repeatVersion)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.tblOperatingSystems_operatingSystemId, "Besturingssysteem: ", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.tblOperatingSystems_operatingSystemId, (SelectList)ViewBag.OS)
+                @Html.ValidationMessageFor(model => model.tblOperatingSystems_operatingSystemId)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.tblPhases_phaseId, "fase: ", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.tblPhases_phaseId, (SelectList)ViewBag.phase)
+                @Html.ValidationMessageFor(model => model.tblPhases_phaseId)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.tblCustomers_customerId, "Klant: ", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.tblCustomers_customerId, (SelectList)ViewBag.customer)
+                @Html.ValidationMessageFor(model => model.tblCustomers_customerId)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

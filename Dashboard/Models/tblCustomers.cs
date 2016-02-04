@@ -11,6 +11,7 @@ namespace Dashboard.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     
     public partial class tblCustomers
     {
@@ -20,9 +21,13 @@ namespace Dashboard.Models
         }
     
         public int customerId { get; set; }
-        public string firstName { get; set; }
-        public string lastName { get; set; }
+        [DisplayName("Contact Persoon")]
+        public string contactPerson { get; set; }
+        [DisplayName("Bedrijf")]
+        public string companyName { get; set; }
+        [DisplayName("Email addres")]
         public string email { get; set; }
+        [DisplayName("Addres")]
         public string address { get; set; }
         public Nullable<System.DateTime> dateCreated { get; set; }
     
