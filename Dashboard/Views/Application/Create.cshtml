@@ -21,7 +21,7 @@
         new { @class = "form-control" }) @Html.ValidationMessageFor(model => model.version)
     </div>
     <div class="list-group-item">
-        @Html.DisplayNameFor(model => model.tblOperatingSystems_operatingSystemId) :
+        @Html.DisplayNameFor(model => model.tblOperatingSystems.name) :
     @Html.DropDownListFor(model => model.tblOperatingSystems_operatingSystemId, (SelectList)ViewBag.OS,
         new { @class = "form-control" }) @Html.ValidationMessageFor(model => model.tblOperatingSystems_operatingSystemId)
     </div>
@@ -31,12 +31,12 @@
         new { @class = "form-control" }) @Html.ValidationMessageFor(model => model.uniqueId)
     </div>
     <div class="list-group-item">
-        @Html.DisplayNameFor(model => model.tblPhases_phaseId) :
+        @Html.DisplayNameFor(model => model.tblPhases.name) :
     @Html.DropDownListFor(model => model.tblPhases_phaseId, (SelectList)ViewBag.phase,
         new { @class = "form-control" }) @Html.ValidationMessageFor(model => model.tblPhases_phaseId)
     </div>
     <div class="list-group-item">
-        @Html.DisplayNameFor(model => model.tblCustomers_customerId) :
+        @Html.DisplayNameFor(model => model.tblCustomers.companyName) :
     @Html.DropDownListFor(model => model.tblCustomers_customerId, (SelectList)ViewBag.customer,
         new { @class = "form-control" }) @Html.ValidationMessageFor(model => model.tblCustomers_customerId)
     </div>
