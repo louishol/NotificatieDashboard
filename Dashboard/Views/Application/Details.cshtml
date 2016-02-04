@@ -1,0 +1,89 @@
+﻿@model Dashboard.Models.tblApplications
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details van @Model.name</h2>
+
+<div>
+   
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.repeatable)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.repeatable)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.version)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.version)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.uniqueId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.uniqueId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.url)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.url)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.repeatVersion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.repeatVersion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblOperatingSystems.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblOperatingSystems.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblCustomers.firstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblCustomers.firstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblPhases.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblPhases.name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+  
+</p>

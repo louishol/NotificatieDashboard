@@ -4,31 +4,32 @@
 @Scripts.Render("~/bundles/jquery")
 <div class="flex-container">
 
-    <div class="flex-item3">
+    <div class="flex-item">
         <a class="list-group-item active"><span class="badge"></span>Klanten  </a>
         <a href="#" class="list-group-item">4net</a>
         @foreach (var item in ViewBag.applications)
         {
-            <a href="#" class="list-group-item">@item.name</a>
+          <a href="#" class="list-group-item">@item.name</a>
         }
     </div>
 
-    <div class="flex-item2">
-    
-        <a href="Application/Create" class="list-group-item active"><span class="badge"><p id="newapplication" class="glyphicon glyphicon-plus"></p></span> List of Applications : </a>
+    <div class="flex-item">
+
+        <a href="/Application/Create" class="list-group-item active"><span class="badge"><p id="newapplication" class="glyphicon glyphicon-plus"></p></span> List of Applications : </a>
         @foreach (var item in ViewBag.applications)
         {
-            <a href="#" class="list-group-item">@item.name</a>
+
+
+        @Html.ActionLink((String)item.name, "Details", "Application", new { id = item.applicationId}, new { @class = "list-group-item" });
+
         }
     </div>
-    <div class="flex-item4">
+    <div class="flex-item">
+        <a class="list-group-item active"><span class="badge"></span>Verdeling besturingssystemen  </a>
         <div id="piechart"></div>
     </div>
-</div>
-
-<div class="flex-container">
  
-    <div class="flex-item1">
+    <div class="flex-item">
         <a href="#" class="list-group-item" style="background-color:lightgreen">
             <p>Recent added devices</p>
         </a>
@@ -44,16 +45,16 @@
         <a href="#" class="list-group-item">Number of Images</a>
         <a href="#" class="list-group-item">Renewal cost per year</a>
     </div>
-    <div class="flex-item1">
+    <div class="flex-item">
         <a href="#" class="list-group-item" style="background-color:orange">
             Recent crash reports
         </a>
         @foreach (var item in ViewBag.applications)
         {
-            <a href="#" class="list-group-item">@item.name</a>
+          <a href="#" class="list-group-item">@item.name</a>
         }
     </div>
-    <div class="flex-item1">
+    <div class="flex-item">
         <a href="#" class="list-group-item active">
             Popular Apps :
         </a>
@@ -94,7 +95,7 @@
         ]);
 
         var options = {
-            title: "Besturing Systemen"
+           
         };
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
 

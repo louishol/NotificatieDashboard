@@ -26,14 +26,16 @@ textarea {
   width:auto;
   background-repeat: no-repeat;
   height:400px;
-  background: url('Images/4netinteractive.png');
+  background-image: url('Images/4netinteractive.png');
 }
 .flex-container {
     display: -webkit-flex;
     display: flex;
+    flex-wrap:wrap;
     width: auto;
     min-height: 240px;
     background-color: lightgrey;
+    padding:5px;
 }
 .statisticsheadertext {
     font-family: "Times New Roman", Times, serif;
@@ -60,6 +62,8 @@ textarea {
     display: inline-block;
     box-sizing: border-box;
     margin-left: 10%;
+    width:auto;
+    text-align:center;
 }
 .statisticstextunder {
     color: #021f54;
@@ -74,28 +78,20 @@ textarea {
 }
 
 
-.flex-item1 {
+.flex-item {
     background-color: white;
-    width: auto;
+    width: calc(33.3% - 10px);
+    width: -moz-calc(33.3% - 10px);
+    width: -webkit-calc(33.3% - 10px);
+    width: -o-calc(33.3% - 10px);
+    width: calc(33.3% - 10px);
+
     height: auto;
-    flex-grow: 1;
-    margin:10px;
-}
-.flex-item2 {
-    background-color: white;
-    width: auto;
-    height: auto;
-    flex-grow: 1;
-    margin:10px;
+  
+    margin:5px;
+    
 }
 
-.flex-item3 {
-    background-color: white;
-    width: auto;
-    height: auto;
-    flex-grow: 1;
-    margin:10px;
-}
 .flex-item4 {
     background-color: white;
     width: 10%;

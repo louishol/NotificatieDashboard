@@ -18,6 +18,8 @@ namespace Dashboard.Controllers
             ViewBag.devCount = db.tblDevices.Count();
             ViewBag.crashCount = db.tblCrashReports.Count();
 
+            //ViewBag.appCount = 1;
+
             ViewBag.applications = db.tblApplications.ToList();
 
             return View();
