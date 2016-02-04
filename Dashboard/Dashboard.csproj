@@ -163,6 +163,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AccountControllerBackup.cs" />
     <Compile Include="Controllers\ApplicationController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -184,6 +185,7 @@
       <DependentUpon>Entities.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\PopularApp.cs" />
     <Compile Include="Models\tblApplications.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
@@ -271,11 +273,11 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Application\Details.cshtml" />
     <Content Include="Views\Application\Create.cshtml" />
+    <Content Include="Views\Customer\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\App_LocalResources\" />
-    <Folder Include="Views\ddwdwd\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

@@ -46,7 +46,7 @@ namespace Dashboard.Controllers
         {
             if (id != null && id > 0)
             {
-                tblApplications app = db.tblApplications.Where(c => c.applicationId == id).First();
+                tblApplications app = db.tblApplications.Find(id);
                 ViewBag.appCount = db.tblApplications.Count();
                 ViewBag.devCount = db.tblDevices.Count();
                 ViewBag.crashCount = db.tblCrashReports.Count();

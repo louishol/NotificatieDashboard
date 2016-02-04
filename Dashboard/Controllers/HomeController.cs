@@ -1,5 +1,6 @@
 ﻿using Dashboard.Models;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -21,6 +22,10 @@ namespace Dashboard.Controllers
             //ViewBag.appCount = 1;
 
             ViewBag.applications = db.tblApplications.ToList();
+            ViewBag.customers = db.tblCustomers.ToList();
+         
+            string query = "Select applicationId, name, COUNT(*) as devices from tblApplications join tblDevices on tblDevices.tblApplications_applicationId = tblApplications.applicationId group by name, applicationId order by devices DESC";
+            ViewBag.popularApplications = db.Database.SqlQuery<PopularApp>(query).ToList();
 
             return View();
         }
