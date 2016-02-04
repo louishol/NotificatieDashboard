@@ -56,7 +56,7 @@ namespace Dashboard.Controllers
                 tblcustomers.dateCreated = DateTime.Now;
                 db.tblCustomers.Add(tblcustomers);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Home");
             }
 
             return View();
