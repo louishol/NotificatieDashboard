@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Dashboard.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,12 +9,20 @@ namespace Dashboard.Controllers
 {
     public class HomeController : Controller
     {
-        [Authorize]
+        private AppVersionCheckEntities db = new AppVersionCheckEntities();
+
+       // [Authorize]
         public ActionResult Index()
         {
+            ViewBag.appCount = db.tblApplications.Count();
+            ViewBag.devCount = db.tblDevices.Count();
+            ViewBag.crashCount = db.tblCrashReports.Count();
+
+            //ViewBag.appCount = 1;
+
+            ViewBag.applications = db.tblApplications.ToList();
+
             return View();
         }
-
-        
     }
 }

@@ -26,14 +26,16 @@ textarea {
   width:auto;
   background-repeat: no-repeat;
   height:400px;
-  background: url('Images/placeholder.jpg');
+  background-image: url('Images/4netinteractive.png');
 }
 .flex-container {
     display: -webkit-flex;
     display: flex;
+    flex-wrap:wrap;
     width: auto;
-    height: 250px;
+    min-height: 240px;
     background-color: lightgrey;
+    padding:5px;
 }
 .statisticsheadertext {
     font-family: "Times New Roman", Times, serif;
@@ -60,6 +62,8 @@ textarea {
     display: inline-block;
     box-sizing: border-box;
     margin-left: 10%;
+    width:auto;
+    text-align:center;
 }
 .statisticstextunder {
     color: #021f54;
@@ -74,20 +78,29 @@ textarea {
 }
 
 
-.flex-item1 {
-    background-color: aliceblue;
-    width: auto;
+.flex-item {
+    background-color: white;
+    width: calc(33.3% - 10px);
+    width: -moz-calc(33.3% - 10px);
+    width: -webkit-calc(33.3% - 10px);
+    width: -o-calc(33.3% - 10px);
+    width: calc(33.3% - 10px);
+
+    height: auto;
+  
+    margin:5px;
+    
+}
+
+.flex-item4 {
+    background-color: white;
+    width: 10%;
+    min-width: 10%;
     height: auto;
     flex-grow: 1;
     margin:10px;
 }
-.flex-item2 {
-    background-color: aliceblue;
-    width: auto;
-    height: auto;
-    flex-grow: 2;
-    margin :10px;
-}
+
 
 /* styles for validation helpers */
 .field-validation-error {
