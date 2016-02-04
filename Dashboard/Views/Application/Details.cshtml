@@ -15,78 +15,22 @@
 <div class="list-group-item">@Html.DisplayNameFor(model => model.repeatable) : @Html.DisplayFor(model => model.repeatable)</div>
 <div class="list-group-item">@Html.DisplayNameFor(model => model.repeatVersion) : @Html.DisplayFor(model => model.repeatVersion)</div>
 
-@*<div>
-	<hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.name)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.version)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.version)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.tblOperatingSystems.name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.tblOperatingSystems.name)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.uniqueId)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.uniqueId)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.url)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.url)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.tblCustomers.firstName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.tblCustomers.firstName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.tblPhases.name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.tblPhases.name)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.repeatable)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.repeatable)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.repeatVersion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.repeatVersion)
-        </dd>   
-    </dl>
-</div>*@
 <a class="list-group-item active">Berichten van @Model.name </a>
 @foreach (var item in Model.tblMessages)
 {
     <div class="list-group-item">Bericht : @item.message <span class="badge">@item.tblLanguageCodes.name</span></div>
 
+}
+@if (ViewBag.tblMessages == null)
+{
+    <div class="list-group-item">Geen bericht gevonden</div>
+}
+
+<a class="list-group-item active">Crash report(s) van @Model.name </a>
+@foreach (var device in Model.tblDevices)
+{
+    foreach (var report in device.tblCrashReports)
+    {
+         <div class="list-group-item">Device : @device.uniqueId | Report : @report.report </div>
+    }
 }

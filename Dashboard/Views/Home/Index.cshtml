@@ -13,7 +13,7 @@
         }
     </div>
     <div class="flex-item">
-        <a href="/Application/Create" class="list-group-item active"><span class="badge"><p id="newapplication" class="glyphicon glyphicon-plus"></p></span> List of Applications : </a>
+        <a href="/Application/Create" class="list-group-item active"><span class="badge"><p id="newapplication" class="glyphicon glyphicon-plus"></p></span> Applicaties</a>
         @foreach (var item in ViewBag.applications)
         {   
             @Html.ActionLink((String)item.name, "Details", "Application", new { id = item.applicationId}, new { @class = "list-group-item" });
@@ -28,17 +28,11 @@
         <a href="#" class="list-group-item" style="background-color:lightgreen">
             Onlangs toegevoegde apparaten
         </a>
-        @foreach (var item in ViewBag.applications)
+        @foreach (var item in ViewBag.devices)
         {
-            <a href="#" class="list-group-item">@item.name</a>
+            <a href="#" class="list-group-item">@item.operatingSystemVersion - @item.uniqueId <span class="badge">@item.tblApplications.name</span></a>
         }
-        <a href="#" class="list-group-item">24*7 support</a>
-        <a href="#" class="list-group-item">Free Window Space hosting</a>
-        <a href="#" class="list-group-item">Number of Images</a>
-        <a href="#" class="list-group-item">enewal cost per year</a>
-        <a href="#" class="list-group-item">Free Window Space hosting</a>
-        <a href="#" class="list-group-item">Number of Images</a>
-        <a href="#" class="list-group-item">Renewal cost per year</a>
+        
     </div>
     <div class="flex-item">
         <a href="#" class="list-group-item" style="background-color:orange">
@@ -48,6 +42,7 @@
         {
           <a href="#" class="list-group-item">@item.name</a>
         }
+     
     </div>
     <div class="flex-item">
         <a href="#" class="list-group-item active">

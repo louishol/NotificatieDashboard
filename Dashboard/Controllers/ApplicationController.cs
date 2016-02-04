@@ -47,9 +47,9 @@ namespace Dashboard.Controllers
             if (id != null && id > 0)
             {
                 tblApplications app = db.tblApplications.Find(id);
-                ViewBag.appCount = db.tblApplications.Count();
-                ViewBag.devCount = db.tblDevices.Count();
-                ViewBag.crashCount = db.tblCrashReports.Count();
+                ViewBag.appCount = 1;
+                ViewBag.devCount = db.tblDevices.Where(d => d.tblApplications.applicationId == id).Count();
+                ViewBag.crashCount = db.tblCrashReports.Where(c => c.tblDevices.tblApplications.applicationId == id).Count();
                 return View(app);
             }
             return RedirectToAction("Index", "Home");
