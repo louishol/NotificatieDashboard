@@ -85,8 +85,9 @@ dl {
     box-sizing: border-box;
     margin-left: 10%;
     text-align:center;
-        background-color: #428bca;
+    background-color: #428bca;
     border-color: #428bca;
+    padding:10px;
 }
 .statisticstextunder {
     color: #021f54;

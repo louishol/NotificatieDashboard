@@ -46,3 +46,10 @@ Network Trash Folder
 Temporary Items
 .apdisk
 Dashboard/obj/Debug/Dashboard.dll
+Dashboard/bin/Dashboard.dll
+Dashboard/obj/Debug/Dashboard.pdb
+Dashboard/bin/Dashboard.pdb
+*.user
+Dashboard/Dashboard.csproj
+Dashboard/obj/Debug/DesignTimeResolveAssemblyReferences.cache
+Dashboard.v12.suo

@@ -1,0 +1,101 @@
+﻿@model Dashboard.Models.tblCustomers
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<a class="list-group-item active">Klanten details @Model.companyName</a>
+
+<div class="list-group-item">@Html.DisplayNameFor(model => model.companyName) : @Html.DisplayFor(model => model.companyName)</div>
+<div class="list-group-item">@Html.DisplayNameFor(model => model.contactPerson) : @Html.DisplayFor(model => model.contactPerson)</div>
+<div class="list-group-item">@Html.DisplayNameFor(model => model.email) : @Html.DisplayFor(model => model.email)</div>
+<div class="list-group-item">@Html.DisplayNameFor(model => model.address) : @Html.DisplayFor(model => model.address)</div>
+
+@*<div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.name)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.version)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.version)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.tblOperatingSystems.name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.tblOperatingSystems.name)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.uniqueId)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.uniqueId)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.url)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.url)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.tblCustomers.firstName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.tblCustomers.firstName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.tblPhases.name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.tblPhases.name)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.repeatable)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.repeatable)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.repeatVersion)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.repeatVersion)
+            </dd>
+        </dl>
+    </div>*@
+<a class="list-group-item active">Applicaties van @Model.companyName </a>
+@foreach (var item in Model.tblApplications)
+{
+    @*<div class="list-group-item">Applicatie : @item.name <span class="badge">Apparaten @item.tblDevices.Count</span><span class="badge">V @item.version</span></div>*@
+
+      <a href="../../Application/Details/@item.applicationId" class="list-group-item">Applicatie : @item.name <span class="badge">Apparaten @item.tblDevices.Count</span><span class="badge">V @item.version</span></a>
+
+
+
+
+
+
+
+
+
+
+
+
+}
