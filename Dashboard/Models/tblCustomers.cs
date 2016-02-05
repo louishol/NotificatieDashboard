@@ -12,6 +12,7 @@ namespace Dashboard.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class tblCustomers
     {
@@ -20,13 +21,19 @@ namespace Dashboard.Models
             this.tblApplications = new HashSet<tblApplications>();
         }
     
+
         public int customerId { get; set; }
+        [Required]
         [DisplayName("Contact Persoon")]
         public string contactPerson { get; set; }
+        [Required]
         [DisplayName("Bedrijf")]
         public string companyName { get; set; }
+        [Required]
         [DisplayName("Email addres")]
+        [EmailAddress]
         public string email { get; set; }
+        [Required]
         [DisplayName("Addres")]
         public string address { get; set; }
         public Nullable<System.DateTime> dateCreated { get; set; }

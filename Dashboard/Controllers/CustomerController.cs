@@ -93,6 +93,33 @@ namespace Dashboard.Controllers
             return View(tblcustomers);
         }
 
+
+        //public ActionResult Delete(int id = 0)
+        //{
+        //    tblCustomers customer = db.tblCustomers.Find(id);
+        //    if (customer == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(customer);
+        //}
+
+        //
+        // POST: /Movies/Delete/5
+
+        [HttpPost]
+        public ActionResult Delete(int? id)
+        {
+            tblCustomers customer = db.tblCustomers.Find(id);
+            if (customer == null)
+            {
+                return HttpNotFound();
+            }
+            db.tblCustomers.Remove(customer);
+            db.SaveChanges();
+            return RedirectToAction("Index", "Home");
+        }
+
        
     }
 }
