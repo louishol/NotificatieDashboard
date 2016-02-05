@@ -13,7 +13,7 @@
 input,
 select,
 textarea {
-    max-width: 280px;
+        
 }
 dl {
     border: 3px double #ccc;
@@ -79,6 +79,29 @@ dl {
     display: inline-block;
 
     white-space: nowrap;
+}
+
+.modal {
+  text-align: center;
+}
+
+@media screen and (min-width: 768px) { 
+  .modal:before {
+    display: inline-block;
+    vertical-align: middle;
+    content: " ";
+    height: 100%;
+  }
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+.hover:hover {
+    cursor: pointer;
+    cursor:hand;
 }
 .boxing {
     display: inline-block;

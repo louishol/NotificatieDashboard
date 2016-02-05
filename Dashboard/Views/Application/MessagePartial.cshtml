@@ -1,0 +1,40 @@
+﻿@model Dashboard.Models.tblMessages
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+
+    <div class="modal fade" id="partial" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Bericht toevoegen</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        @Html.HiddenFor(model => model.applicationId)
+
+                        @Html.LabelFor(model => model.message, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.message, new { @class = "form-control", style="with:100%"})
+                            @Html.ValidationMessageFor(model => model.message)
+                        </div>
+                 
+                        @Html.LabelFor(model => model.tbLanguageCodes_languageId, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.tbLanguageCodes_languageId, (SelectList)ViewBag.countries, new { @class ="form-control"})
+                            @Html.ValidationMessageFor(model => model.tbLanguageCodes_languageId)
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="modal-footer" style="margin-top:10% !important">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Sluiten</button>
+                    <button type="button" class="btn btn-primary">Opslaan</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+ 
+}

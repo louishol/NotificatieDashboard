@@ -42,14 +42,25 @@ namespace Dashboard.Controllers
         {
             return View();
         }
+
         public ActionResult Details(int? id)
         {
+
             if (id != null && id > 0)
             {
+                //Details of application
                 tblApplications app = db.tblApplications.Find(id);
+                //statistics
                 ViewBag.appCount = 1;
                 ViewBag.devCount = db.tblDevices.Where(d => d.tblApplications.applicationId == id).Count();
                 ViewBag.crashCount = db.tblCrashReports.Where(c => c.tblDevices.tblApplications.applicationId == id).Count();
+                //partial view
+                tblMessages partial = new tblMessages();
+                partial.applicationId = id.Value;
+                ViewData["partial"] = partial;
+                //Countries for the message dropdown in the partial view
+                ViewBag.countries = new SelectList(db.tblLanguageCodes, "languageId", "name");
+
                 return View(app);
             }
             return RedirectToAction("Index", "Home");

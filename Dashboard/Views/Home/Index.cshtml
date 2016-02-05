@@ -15,7 +15,7 @@
         }
     </div>
     <div class="flex-item">
-        <a href="/Application/Create" class="list-group-item active"><span style="float: right"><p id="newapplication" class="glyphicon glyphicon-plus"></p></span> Applicaties</a>
+        <a href="/Application/Create" class="list-group-item active"><span style="float: right"><p id="newapplication" class="glyphicon glyphicon-plus hover"></p></span> Applicaties</a>
         @foreach (var item in ViewBag.applications)
         {   
             @Html.ActionLink((String)item.name, "Details", "Application", new { id = item.applicationId}, new { @class = "list-group-item" });
@@ -60,20 +60,27 @@
 <script type="text/javascript">
 
     google.charts.load('current', { 'packages': ['corechart'] });
+    var appData = [['OS', 'Counter']];
+
+    function addDataToArray(OS, counter) {
+        appData.push([OS, counter]);
+    }
+
+    @foreach (var app in ViewBag.osPercentage)
+    {
+        
+       @:addDataToArray('@app.name', @app.counter);
+    }
+
+
     google.charts.setOnLoadCallback(drawChart);
     function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
-          ['Android', 11],
-          ['iOS', 2]
-
-        ]);
-
+    
+        var data = google.visualization.arrayToDataTable(appData);
         var options = {
            
         };
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
         chart.draw(data, options);
     }
 </script>

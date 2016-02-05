@@ -185,6 +185,7 @@
       <DependentUpon>Entities.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\PercentageApp.cs" />
     <Compile Include="Models\PopularApp.cs" />
     <Compile Include="Models\tblApplications.cs">
       <DependentUpon>Entities.tt</DependentUpon>
@@ -275,6 +276,8 @@
     <Content Include="Views\Application\Create.cshtml" />
     <Content Include="Views\Customer\Details.cshtml" />
     <Content Include="Views\Customer\Create.cshtml" />
+    <Content Include="Views\Shared\_Layoutclean.cshtml" />
+    <Content Include="Views\Application\MessagePartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -11,10 +11,12 @@ namespace Dashboard.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     
     public partial class tblMessages
     {
         public int applicationId { get; set; }
+        [DisplayName("Bericht")]
         public string message { get; set; }
         public int tblApplications_applicationId { get; set; }
         public int tbLanguageCodes_languageId { get; set; }

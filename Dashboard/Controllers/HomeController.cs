@@ -29,6 +29,10 @@ namespace Dashboard.Controllers
             string query = "Select applicationId, name, COUNT(*) as devices from tblApplications join tblDevices on tblDevices.tblApplications_applicationId = tblApplications.applicationId group by name, applicationId order by devices DESC";
             ViewBag.popularApplications = db.Database.SqlQuery<PopularApp>(query).ToList();
 
+            query = "select tblOperatingSystems.name, COUNT(*) as counter from tblApplications JOIN tblOperatingSystems on tblApplications.tblOperatingSystems_operatingSystemId = tblOperatingSystems.operatingSystemId group by tblOperatingSystems.name";
+            //var dic = db.Database.SqlQuery<PercentageApp>(query).ToList();
+
+            ViewBag.osPercentage = db.Database.SqlQuery<PercentageApp>(query).ToList();
             return View();
         }
     }

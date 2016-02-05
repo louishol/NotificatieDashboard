@@ -3,7 +3,6 @@
 @{
     ViewBag.Title = "Details";
 }
-
 <a class="list-group-item active">Details @Model.name</a>
 <div class="list-group-item">@Html.DisplayNameFor(model => model.name) : @Html.DisplayFor(model => model.name)</div>
 <div class="list-group-item">@Html.DisplayNameFor(model => model.version) : @Html.DisplayFor(model => model.version)</div>
@@ -15,22 +14,36 @@
 <div class="list-group-item">@Html.DisplayNameFor(model => model.repeatable) : @Html.DisplayFor(model => model.repeatable)</div>
 <div class="list-group-item">@Html.DisplayNameFor(model => model.repeatVersion) : @Html.DisplayFor(model => model.repeatVersion)</div>
 
-<a class="list-group-item active">Berichten van @Model.name </a>
+<a class="list-group-item active">Berichten van @Model.name <span style="float: right"><p id="newmessage" data-toggle="modal" data-target="#partial" class=" glyphicon glyphicon-plus hover"></p></span></a>
 @foreach (var item in Model.tblMessages)
 {
     <div class="list-group-item">Bericht : @item.message <span class="badge">@item.tblLanguageCodes.name</span></div>
-
 }
-@if (ViewBag.tblMessages == null)
+@if (Model.tblMessages == null)
 {
     <div class="list-group-item">Geen bericht gevonden</div>
 }
-
 <a class="list-group-item active">Crash report(s) van @Model.name </a>
-@foreach (var device in Model.tblDevices)
-{
-    foreach (var report in device.tblCrashReports)
+@{
+    bool record = false;
+    foreach (var device in Model.tblDevices)
     {
-         <div class="list-group-item">Device : @device.uniqueId | Report : @report.report </div>
+        foreach (var report in device.tblCrashReports)
+        {
+             <div class="list-group-item">Device : @device.uniqueId | Report : @report.report </div>
+            record = true;
+        }
+    }
+    if (!record)
+    {
+        <div class="list-group-item">Geen crash reports gevonden</div>
     }
 }
+
+@Html.Partial("~/Views/Application/MessagePartial.cshtml", ViewData["partial"]);
+
+<script>
+
+   
+</script>
+    
