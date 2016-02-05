@@ -50,6 +50,11 @@
     @Html.TextBoxFor(model => model.repeatVersion,
         new { @class = "form-control" }) @Html.ValidationMessageFor(model => model.repeatVersion)
     </div>
+    <div class="list-group-item">
+        @Html.DisplayNameFor(model => model.url) :
+        @Html.TextBoxFor(model => model.url,
+    new { @class = "form-control" }) @Html.ValidationMessageFor(model => model.url)
+    </div>
     <br />
     <div class="form-group">
         <div>
