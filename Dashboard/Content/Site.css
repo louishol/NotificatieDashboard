@@ -132,7 +132,7 @@ dl {
     width: -webkit-calc(33.3% - 10px);
     width: -o-calc(33.3% - 10px);
     width: calc(33.3% - 10px);
-
+    min-height:300px;
     height: auto;
   
     margin:5px;
