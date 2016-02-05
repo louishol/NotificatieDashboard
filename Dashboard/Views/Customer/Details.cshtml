@@ -1,8 +1,15 @@
 ﻿@model Dashboard.Models.tblCustomers
 
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
 @{
     ViewBag.Title = "Details";
 }
+
 
 <a class="list-group-item active">Klanten details @Model.companyName</a>
 
@@ -11,91 +18,45 @@
 <div class="list-group-item">@Html.DisplayNameFor(model => model.email) : @Html.DisplayFor(model => model.email)</div>
 <div class="list-group-item">@Html.DisplayNameFor(model => model.address) : @Html.DisplayFor(model => model.address)</div>
 
-@*<div>
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.name)
-            </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.name)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.version)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.version)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.tblOperatingSystems.name)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.tblOperatingSystems.name)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.uniqueId)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.uniqueId)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.url)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.url)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.tblCustomers.firstName)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.tblCustomers.firstName)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.tblPhases.name)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.tblPhases.name)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.repeatable)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.repeatable)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.repeatVersion)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.repeatVersion)
-            </dd>
-        </dl>
-    </div>*@
 <a class="list-group-item active">Applicaties van @Model.companyName </a>
 @foreach (var item in Model.tblApplications)
 {
     @*<div class="list-group-item">Applicatie : @item.name <span class="badge">Apparaten @item.tblDevices.Count</span><span class="badge">V @item.version</span></div>*@
 
       <a href="../../Application/Details/@item.applicationId" class="list-group-item">Applicatie : @item.name <span class="badge">Apparaten @item.tblDevices.Count</span><span class="badge">V @item.version</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
 }
+
+<br />
+
+@using (Html.BeginForm("Delete", "Customer", new { id = @Model.customerId }, FormMethod.Post))
+{
+    <div class="form-group">
+
+        <input type="button" data-toggle="modal" data-target="#myModal" value="Verwijder deze klant" class="btn btn-default" />
+        <input type="button" onclick="history.back();" value="Terug" class="btn btn-default" />
+
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Verwijder deze klant</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Weet u zeker dat u deze klant wilt verwijderden?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="submit" value="Verwijder klant" class="btn btn-default" />
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Annuleren</button>
+                    </div>
+                </div>
+            </div>  
+        </div>
+    </div>
+}
+
+<script>
+
+</script>
