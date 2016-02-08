@@ -15,7 +15,9 @@ namespace Dashboard.Controllers
        // [Authorize]
         public ActionResult Index()
         {
-            ViewBag.appCount = db.tblApplications.Count();
+
+
+            ViewBag.appCount = Lib.DAL.Applications.Get().Count;
             ViewBag.devCount = db.tblDevices.Count();
             ViewBag.crashCount = db.tblCrashReports.Count();
 
@@ -31,6 +33,8 @@ namespace Dashboard.Controllers
 
             query = "select tblOperatingSystems.name, COUNT(*) as counter from tblApplications JOIN tblOperatingSystems on tblApplications.tblOperatingSystems_operatingSystemId = tblOperatingSystems.operatingSystemId group by tblOperatingSystems.name";
             //var dic = db.Database.SqlQuery<PercentageApp>(query).ToList();
+
+
 
             ViewBag.osPercentage = db.Database.SqlQuery<PercentageApp>(query).ToList();
             return View();

@@ -11,7 +11,6 @@ namespace Dashboard.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
     
     public partial class tblLanguageCodes
     {
@@ -21,7 +20,6 @@ namespace Dashboard.Models
         }
     
         public int languageId { get; set; }
-        [DisplayName("Taal")]
         public string name { get; set; }
     
         public virtual ICollection<tblMessages> tblMessages { get; set; }

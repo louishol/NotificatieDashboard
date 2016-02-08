@@ -43,6 +43,21 @@ namespace Dashboard.Controllers
             return View();
         }
 
+        [HttpPost]
+        public JsonResult addMessageToApplication(int appId, String message, int languageId)
+        {
+            var json = "";
+            var application = db.tblApplications.Find(appId);
+            if(application == null) {
+                json = "{\"status\":\"500\", \"message\":\"Application not found\"}";
+            } else {
+                tblMessages msg = new tblMessages{message = message, tblApplications_applicationId = appId, tbLanguageCodes_languageId = languageId};
+                application.tblMessages.Add(msg);
+                db.SaveChanges();
+                json = "{\"status\":\"200\", \"message\":\"Succes\"}";
+            }
+            return Json(json, JsonRequestBehavior.AllowGet);
+        }
         public ActionResult Details(int? id)
         {
 
@@ -56,7 +71,7 @@ namespace Dashboard.Controllers
                 ViewBag.crashCount = db.tblCrashReports.Where(c => c.tblDevices.tblApplications.applicationId == id).Count();
                 //partial view
                 tblMessages partial = new tblMessages();
-                partial.applicationId = id.Value;
+                partial.tblApplications_applicationId= id.Value;
                 ViewData["partial"] = partial;
                 //Countries for the message dropdown in the partial view
                 ViewBag.countries = new SelectList(db.tblLanguageCodes, "languageId", "name");

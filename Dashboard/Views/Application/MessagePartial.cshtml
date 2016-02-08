@@ -13,7 +13,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        @Html.HiddenFor(model => model.applicationId)
+                        @Html.HiddenFor(model => model.tblApplications_applicationId)
 
                         @Html.LabelFor(model => model.message, new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
@@ -30,11 +30,10 @@
                     
                 </div>
                 <div class="modal-footer" style="margin-top:10% !important">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Sluiten</button>
-                    <button type="button" class="btn btn-primary">Opslaan</button>
+                    <button type="button" id="closepartial" class="btn btn-default" data-dismiss="modal">Sluiten</button>
+                    <button type="button" id="savemesssage" class="btn btn-primary">Opslaan</button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
- 
 }

@@ -11,8 +11,6 @@ namespace Dashboard.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.ComponentModel.DataAnnotations;
     
     public partial class tblApplications
     {
@@ -23,32 +21,14 @@ namespace Dashboard.Models
         }
     
         public int applicationId { get; set; }
-        [DisplayName("Naam")]
-        [Required]
         public string name { get; set; }
-        [DisplayName("Bericht herhalen")]
-        [Required]
         public bool repeatable { get; set; }
-        [DisplayName("Versie")]
-        [Required]
         public string version { get; set; }
-        [DisplayName("Applicatie identifier")]
-        [Required]
         public string uniqueId { get; set; }
-        [DisplayName("Update URL")]
-       // [Required]
         public string url { get; set; }
-        [DisplayName("Bericht herhalen vanaf")]
-        [Required]
         public string repeatVersion { get; set; }
-        [DisplayName("Besturingssyteem")]
-        [Required]
         public int tblOperatingSystems_operatingSystemId { get; set; }
-        [DisplayName("Fase")]
-        [Required]
         public int tblPhases_phaseId { get; set; }
-        [DisplayName("Klant")]
-        [Required]
         public int tblCustomers_customerId { get; set; }
     
         public virtual tblOperatingSystems tblOperatingSystems { get; set; }

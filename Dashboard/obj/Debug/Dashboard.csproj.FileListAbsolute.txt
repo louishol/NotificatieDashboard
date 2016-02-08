@@ -163,3 +163,5 @@ C:\Users\Jarno\Dropbox\Avans(zelf)\Stage\Projecten\NotificatieDashboard\Dashboar
 C:\Users\Jarno\Dropbox\Avans(zelf)\Stage\Projecten\NotificatieDashboard\Dashboard\obj\Debug\Dashboard.csprojResolveAssemblyReference.cache
 C:\Users\Jarno\Dropbox\Avans(zelf)\Stage\Projecten\NotificatieDashboard\Dashboard\obj\Debug\Dashboard.dll
 C:\Users\Jarno\Dropbox\Avans(zelf)\Stage\Projecten\NotificatieDashboard\Dashboard\obj\Debug\Dashboard.pdb
+C:\Users\louis\OneDrive\Documenten\GitHub\NotificatieDashboard\Dashboard\bin\Lib.dll
+C:\Users\louis\OneDrive\Documenten\GitHub\NotificatieDashboard\Dashboard\bin\Lib.pdb

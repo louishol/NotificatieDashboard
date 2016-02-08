@@ -1,0 +1,10 @@
+C:\Users\louis\OneDrive\Documenten\GitHub\NotificatieDashboard\Lib\bin\Debug\Lib.dll.config
+C:\Users\louis\OneDrive\Documenten\GitHub\NotificatieDashboard\Lib\bin\Debug\Lib.dll
+C:\Users\louis\OneDrive\Documenten\GitHub\NotificatieDashboard\Lib\bin\Debug\Lib.pdb
+C:\Users\louis\OneDrive\Documenten\GitHub\NotificatieDashboard\Lib\bin\Debug\EntityFramework.dll
+C:\Users\louis\OneDrive\Documenten\GitHub\NotificatieDashboard\Lib\bin\Debug\EntityFramework.xml
+C:\Users\louis\OneDrive\Documenten\GitHub\NotificatieDashboard\Lib\obj\Debug\Lib.csprojResolveAssemblyReference.cache
+C:\Users\louis\OneDrive\Documenten\GitHub\NotificatieDashboard\Lib\obj\Debug\Lib.dll
+C:\Users\louis\OneDrive\Documenten\GitHub\NotificatieDashboard\Lib\obj\Debug\Lib.pdb
+C:\Users\louis\OneDrive\Documenten\GitHub\NotificatieDashboard\Lib\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\louis\OneDrive\Documenten\GitHub\NotificatieDashboard\Lib\bin\Debug\EntityFramework.SqlServer.xml

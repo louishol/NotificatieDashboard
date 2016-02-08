@@ -3,6 +3,8 @@
 @{
     ViewBag.Title = "Details";
 }
+@Scripts.Render("~/bundles/jquery")
+
 <a class="list-group-item active">Details @Model.name</a>
 <div class="list-group-item">@Html.DisplayNameFor(model => model.name) : @Html.DisplayFor(model => model.name)</div>
 <div class="list-group-item">@Html.DisplayNameFor(model => model.version) : @Html.DisplayFor(model => model.version)</div>
@@ -14,15 +16,17 @@
 <div class="list-group-item">@Html.DisplayNameFor(model => model.repeatable) : @Html.DisplayFor(model => model.repeatable)</div>
 <div class="list-group-item">@Html.DisplayNameFor(model => model.repeatVersion) : @Html.DisplayFor(model => model.repeatVersion)</div>
 
-<a class="list-group-item active">Berichten van @Model.name <span style="float: right"><p id="newmessage" data-toggle="modal" data-target="#partial" class=" glyphicon glyphicon-plus hover"></p></span></a>
-@foreach (var item in Model.tblMessages)
-{
-    <div class="list-group-item">Bericht : @item.message <span class="badge">@item.tblLanguageCodes.name</span></div>
-}
-@if (Model.tblMessages == null)
-{
-    <div class="list-group-item">Geen bericht gevonden</div>
-}
+<div id="listmessages">
+    <a class="list-group-item active">Berichten van @Model.name <span style="float: right"><p id="newmessage" data-toggle="modal" data-target="#partial" class=" glyphicon glyphicon-plus hover"></p></span></a>
+    @foreach (var item in Model.tblMessages)
+    {
+        <div class="list-group-item"><span id="@item.messageId" class="glyphicon glyphicon-remove hover" style="float: left; margin-right:10px;"></span>Bericht : @item.message  <span class="badge">@item.tblLanguageCodes.name</span></div>
+    }
+    @if (Model.tblMessages.Count == 0)
+    {
+        <div id="firstmessage" class="list-group-item">Geen bericht gevonden</div>
+    }
+</div>
 <a class="list-group-item active">Crash report(s) van @Model.name </a>
 @{
     bool record = false;
@@ -40,10 +44,29 @@
     }
 }
 
-@Html.Partial("~/Views/Application/MessagePartial.cshtml", ViewData["partial"]);
+@Html.Partial("~/Views/Application/MessagePartial.cshtml", ViewData["partial"])
 
 <script>
-
+    $("#savemesssage").on("click", function () {
+        var message = $("#message").val();
+        var languageID = $("#tbLanguageCodes_languageId").val();
+        var languageCode = $("#tbLanguageCodes_languageId").text();
+        var applicationID = $("#tblApplications_applicationId").val();
+        var data = {"appId":applicationID, "message":message, "languageId":languageID};
+        $.post("/Application/addMessageToApplication",data, function(response) {
+   
+            console.log(response);
+            console.log(languageCode);
+            if (response.status = "200") {
+                $("#closepartial").click();
+                $("#firstmessage").remove();
+                $("#listmessages").append("<div class='list-group-item'>Bericht : " + message + "<span class='badge'>" + languageCode + "</span></div>")
+                
+            } else {
+                alert("Foutmelding: " + response.message);
+            }
+        });
+    });
    
 </script>
 

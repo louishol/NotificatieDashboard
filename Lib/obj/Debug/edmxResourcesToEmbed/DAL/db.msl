@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="modelsStoreContainer" CdmEntityContainer="dbContainer">
+    <EntitySetMapping Name="tblApplications">
+      <EntityTypeMapping TypeName="models.tblApplications">
+        <MappingFragment StoreEntitySet="tblApplications">
+          <ScalarProperty Name="applicationId" ColumnName="applicationId" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="repeatable" ColumnName="repeatable" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="uniqueId" ColumnName="uniqueId" />
+          <ScalarProperty Name="url" ColumnName="url" />
+          <ScalarProperty Name="repeatVersion" ColumnName="repeatVersion" />
+          <ScalarProperty Name="tblOperatingSystems_operatingSystemId" ColumnName="tblOperatingSystems_operatingSystemId" />
+          <ScalarProperty Name="tblPhases_phaseId" ColumnName="tblPhases_phaseId" />
+          <ScalarProperty Name="tblCustomers_customerId" ColumnName="tblCustomers_customerId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblCrashReports">
+      <EntityTypeMapping TypeName="models.tblCrashReports">
+        <MappingFragment StoreEntitySet="tblCrashReports">
+          <ScalarProperty Name="crashReportId" ColumnName="crashReportId" />
+          <ScalarProperty Name="report" ColumnName="report" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="tblDevices_deviceId" ColumnName="tblDevices_deviceId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblCustomers">
+      <EntityTypeMapping TypeName="models.tblCustomers">
+        <MappingFragment StoreEntitySet="tblCustomers">
+          <ScalarProperty Name="customerId" ColumnName="customerId" />
+          <ScalarProperty Name="contactPerson" ColumnName="contactPerson" />
+          <ScalarProperty Name="companyName" ColumnName="companyName" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="dateCreated" ColumnName="dateCreated" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblDevices">
+      <EntityTypeMapping TypeName="models.tblDevices">
+        <MappingFragment StoreEntitySet="tblDevices">
+          <ScalarProperty Name="deviceId" ColumnName="deviceId" />
+          <ScalarProperty Name="operatingSystemVersion" ColumnName="operatingSystemVersion" />
+          <ScalarProperty Name="appVersion" ColumnName="appVersion" />
+          <ScalarProperty Name="uniqueId" ColumnName="uniqueId" />
+          <ScalarProperty Name="insertDate" ColumnName="insertDate" />
+          <ScalarProperty Name="lastCheckinDate" ColumnName="lastCheckinDate" />
+          <ScalarProperty Name="tblApplications_applicationId" ColumnName="tblApplications_applicationId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblLanguageCodes">
+      <EntityTypeMapping TypeName="models.tblLanguageCodes">
+        <MappingFragment StoreEntitySet="tblLanguageCodes">
+          <ScalarProperty Name="languageId" ColumnName="languageId" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblMessages">
+      <EntityTypeMapping TypeName="models.tblMessages">
+        <MappingFragment StoreEntitySet="tblMessages">
+          <ScalarProperty Name="messageId" ColumnName="messageId" />
+          <ScalarProperty Name="message" ColumnName="message" />
+          <ScalarProperty Name="tblApplications_applicationId" ColumnName="tblApplications_applicationId" />
+          <ScalarProperty Name="tbLanguageCodes_languageId" ColumnName="tbLanguageCodes_languageId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblOperatingSystems">
+      <EntityTypeMapping TypeName="models.tblOperatingSystems">
+        <MappingFragment StoreEntitySet="tblOperatingSystems">
+          <ScalarProperty Name="operatingSystemId" ColumnName="operatingSystemId" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblPhases">
+      <EntityTypeMapping TypeName="models.tblPhases">
+        <MappingFragment StoreEntitySet="tblPhases">
+          <ScalarProperty Name="phaseId" ColumnName="phaseId" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblUsers">
+      <EntityTypeMapping TypeName="models.tblUsers">
+        <MappingFragment StoreEntitySet="tblUsers">
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="loginName" ColumnName="loginName" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="lastLogin" ColumnName="lastLogin" />
+          <ScalarProperty Name="dateCreated" ColumnName="dateCreated" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

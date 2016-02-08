@@ -1,0 +1,599 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="AppVersionCheckModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblApplications">
+          <Key>
+            <PropertyRef Name="applicationId" />
+          </Key>
+          <Property Name="applicationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="repeatable" Type="bit" Nullable="false" />
+          <Property Name="version" Type="nchar" MaxLength="15" Nullable="false" />
+          <Property Name="uniqueId" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="url" Type="nchar" MaxLength="200" />
+          <Property Name="repeatVersion" Type="nchar" MaxLength="15" Nullable="false" />
+          <Property Name="tblOperatingSystems_operatingSystemId" Type="int" Nullable="false" />
+          <Property Name="tblPhases_phaseId" Type="int" Nullable="false" />
+          <Property Name="tblCustomers_customerId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblCrashReports">
+          <Key>
+            <PropertyRef Name="crashReportId" />
+          </Key>
+          <Property Name="crashReportId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="report" Type="nchar" MaxLength="200" Nullable="false" />
+          <Property Name="date" Type="datetime" Nullable="false" />
+          <Property Name="tblDevices_deviceId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblCustomers">
+          <Key>
+            <PropertyRef Name="customerId" />
+          </Key>
+          <Property Name="customerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="contactPerson" Type="varchar" MaxLength="50" />
+          <Property Name="companyName" Type="varchar" MaxLength="50" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="address" Type="varchar" MaxLength="50" />
+          <Property Name="dateCreated" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblDevices">
+          <Key>
+            <PropertyRef Name="deviceId" />
+          </Key>
+          <Property Name="deviceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="operatingSystemVersion" Type="nchar" MaxLength="50" />
+          <Property Name="appVersion" Type="nchar" MaxLength="15" Nullable="false" />
+          <Property Name="uniqueId" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="insertDate" Type="datetime" Nullable="false" />
+          <Property Name="lastCheckinDate" Type="datetime" Nullable="false" />
+          <Property Name="tblApplications_applicationId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblLanguageCodes">
+          <Key>
+            <PropertyRef Name="languageId" />
+          </Key>
+          <Property Name="languageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblMessages">
+          <Key>
+            <PropertyRef Name="messageId" />
+          </Key>
+          <Property Name="messageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="message" Type="nchar" MaxLength="200" Nullable="false" />
+          <Property Name="tblApplications_applicationId" Type="int" Nullable="false" />
+          <Property Name="tbLanguageCodes_languageId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblOperatingSystems">
+          <Key>
+            <PropertyRef Name="operatingSystemId" />
+          </Key>
+          <Property Name="operatingSystemId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblPhases">
+          <Key>
+            <PropertyRef Name="phaseId" />
+          </Key>
+          <Property Name="phaseId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblUsers">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="loginName" Type="varchar" MaxLength="45" />
+          <Property Name="password" Type="varchar" MaxLength="200" />
+          <Property Name="lastLogin" Type="datetime" />
+          <Property Name="dateCreated" Type="datetime" />
+          <Property Name="name" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <Association Name="fk_tblApplication_tblOperatingSystem1">
+          <End Role="tblOperatingSystems" Type="Self.tblOperatingSystems" Multiplicity="1" />
+          <End Role="tblApplications" Type="Self.tblApplications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblOperatingSystems">
+              <PropertyRef Name="operatingSystemId" />
+            </Principal>
+            <Dependent Role="tblApplications">
+              <PropertyRef Name="tblOperatingSystems_operatingSystemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tblApplications_tblCustomers1">
+          <End Role="tblCustomers" Type="Self.tblCustomers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblApplications" Type="Self.tblApplications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCustomers">
+              <PropertyRef Name="customerId" />
+            </Principal>
+            <Dependent Role="tblApplications">
+              <PropertyRef Name="tblCustomers_customerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tblApplications_tblPhase1">
+          <End Role="tblPhases" Type="Self.tblPhases" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblApplications" Type="Self.tblApplications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPhases">
+              <PropertyRef Name="phaseId" />
+            </Principal>
+            <Dependent Role="tblApplications">
+              <PropertyRef Name="tblPhases_phaseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tblCrashReport_tblDevice1">
+          <End Role="tblDevices" Type="Self.tblDevices" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblCrashReports" Type="Self.tblCrashReports" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDevices">
+              <PropertyRef Name="deviceId" />
+            </Principal>
+            <Dependent Role="tblCrashReports">
+              <PropertyRef Name="tblDevices_deviceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tblDevice_tblApplication1">
+          <End Role="tblApplications" Type="Self.tblApplications" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblDevices" Type="Self.tblDevices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblApplications">
+              <PropertyRef Name="applicationId" />
+            </Principal>
+            <Dependent Role="tblDevices">
+              <PropertyRef Name="tblApplications_applicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tblMessage_tbLanguageCodes1">
+          <End Role="tblLanguageCodes" Type="Self.tblLanguageCodes" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblMessages" Type="Self.tblMessages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLanguageCodes">
+              <PropertyRef Name="languageId" />
+            </Principal>
+            <Dependent Role="tblMessages">
+              <PropertyRef Name="tbLanguageCodes_languageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tblMessage_tblApplication1">
+          <End Role="tblApplications" Type="Self.tblApplications" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblMessages" Type="Self.tblMessages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblApplications">
+              <PropertyRef Name="applicationId" />
+            </Principal>
+            <Dependent Role="tblMessages">
+              <PropertyRef Name="tblApplications_applicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AppVersionCheckModelStoreContainer">
+          <EntitySet Name="tblApplications" EntityType="Self.tblApplications" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCrashReports" EntityType="Self.tblCrashReports" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCustomers" EntityType="Self.tblCustomers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblDevices" EntityType="Self.tblDevices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblLanguageCodes" EntityType="Self.tblLanguageCodes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblMessages" EntityType="Self.tblMessages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblOperatingSystems" EntityType="Self.tblOperatingSystems" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblPhases" EntityType="Self.tblPhases" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUsers" EntityType="Self.tblUsers" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_tblApplication_tblOperatingSystem1" Association="Self.fk_tblApplication_tblOperatingSystem1">
+            <End Role="tblOperatingSystems" EntitySet="tblOperatingSystems" />
+            <End Role="tblApplications" EntitySet="tblApplications" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tblApplications_tblCustomers1" Association="Self.fk_tblApplications_tblCustomers1">
+            <End Role="tblCustomers" EntitySet="tblCustomers" />
+            <End Role="tblApplications" EntitySet="tblApplications" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tblApplications_tblPhase1" Association="Self.fk_tblApplications_tblPhase1">
+            <End Role="tblPhases" EntitySet="tblPhases" />
+            <End Role="tblApplications" EntitySet="tblApplications" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tblCrashReport_tblDevice1" Association="Self.fk_tblCrashReport_tblDevice1">
+            <End Role="tblDevices" EntitySet="tblDevices" />
+            <End Role="tblCrashReports" EntitySet="tblCrashReports" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tblDevice_tblApplication1" Association="Self.fk_tblDevice_tblApplication1">
+            <End Role="tblApplications" EntitySet="tblApplications" />
+            <End Role="tblDevices" EntitySet="tblDevices" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tblMessage_tbLanguageCodes1" Association="Self.fk_tblMessage_tbLanguageCodes1">
+            <End Role="tblLanguageCodes" EntitySet="tblLanguageCodes" />
+            <End Role="tblMessages" EntitySet="tblMessages" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tblMessage_tblApplication1" Association="Self.fk_tblMessage_tblApplication1">
+            <End Role="tblApplications" EntitySet="tblApplications" />
+            <End Role="tblMessages" EntitySet="tblMessages" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AppVersionCheckModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tblApplications">
+          <Key>
+            <PropertyRef Name="applicationId" />
+          </Key>
+          <Property Name="applicationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="repeatable" Type="Boolean" Nullable="false" />
+          <Property Name="version" Type="String" MaxLength="15" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="uniqueId" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="url" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+          <Property Name="repeatVersion" Type="String" MaxLength="15" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="tblOperatingSystems_operatingSystemId" Type="Int32" Nullable="false" />
+          <Property Name="tblPhases_phaseId" Type="Int32" Nullable="false" />
+          <Property Name="tblCustomers_customerId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblOperatingSystems" Relationship="Self.fk_tblApplication_tblOperatingSystem1" FromRole="tblApplications" ToRole="tblOperatingSystems" />
+          <NavigationProperty Name="tblCustomers" Relationship="Self.fk_tblApplications_tblCustomers1" FromRole="tblApplications" ToRole="tblCustomers" />
+          <NavigationProperty Name="tblPhases" Relationship="Self.fk_tblApplications_tblPhase1" FromRole="tblApplications" ToRole="tblPhases" />
+          <NavigationProperty Name="tblDevices" Relationship="Self.fk_tblDevice_tblApplication1" FromRole="tblApplications" ToRole="tblDevices" />
+          <NavigationProperty Name="tblMessages" Relationship="Self.fk_tblMessage_tblApplication1" FromRole="tblApplications" ToRole="tblMessages" />
+        </EntityType>
+        <EntityType Name="tblCrashReports">
+          <Key>
+            <PropertyRef Name="crashReportId" />
+          </Key>
+          <Property Name="crashReportId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="report" Type="String" MaxLength="200" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="tblDevices_deviceId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblDevices" Relationship="Self.fk_tblCrashReport_tblDevice1" FromRole="tblCrashReports" ToRole="tblDevices" />
+        </EntityType>
+        <EntityType Name="tblCustomers">
+          <Key>
+            <PropertyRef Name="customerId" />
+          </Key>
+          <Property Name="customerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="contactPerson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="companyName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="dateCreated" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tblApplications" Relationship="Self.fk_tblApplications_tblCustomers1" FromRole="tblCustomers" ToRole="tblApplications" />
+        </EntityType>
+        <EntityType Name="tblDevices">
+          <Key>
+            <PropertyRef Name="deviceId" />
+          </Key>
+          <Property Name="deviceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="operatingSystemVersion" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="appVersion" Type="String" MaxLength="15" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="uniqueId" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="insertDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="lastCheckinDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="tblApplications_applicationId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblApplications" Relationship="Self.fk_tblDevice_tblApplication1" FromRole="tblDevices" ToRole="tblApplications" />
+          <NavigationProperty Name="tblCrashReports" Relationship="Self.fk_tblCrashReport_tblDevice1" FromRole="tblDevices" ToRole="tblCrashReports" />
+        </EntityType>
+        <EntityType Name="tblLanguageCodes">
+          <Key>
+            <PropertyRef Name="languageId" />
+          </Key>
+          <Property Name="languageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tblMessages" Relationship="Self.fk_tblMessage_tbLanguageCodes1" FromRole="tblLanguageCodes" ToRole="tblMessages" />
+        </EntityType>
+        <EntityType Name="tblMessages">
+          <Key>
+            <PropertyRef Name="messageId" />
+          </Key>
+          <Property Name="messageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="message" Type="String" MaxLength="200" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="tblApplications_applicationId" Type="Int32" Nullable="false" />
+          <Property Name="tbLanguageCodes_languageId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblApplications" Relationship="Self.fk_tblMessage_tblApplication1" FromRole="tblMessages" ToRole="tblApplications" />
+          <NavigationProperty Name="tblLanguageCodes" Relationship="Self.fk_tblMessage_tbLanguageCodes1" FromRole="tblMessages" ToRole="tblLanguageCodes" />
+        </EntityType>
+        <EntityType Name="tblOperatingSystems">
+          <Key>
+            <PropertyRef Name="operatingSystemId" />
+          </Key>
+          <Property Name="operatingSystemId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tblApplications" Relationship="Self.fk_tblApplication_tblOperatingSystem1" FromRole="tblOperatingSystems" ToRole="tblApplications" />
+        </EntityType>
+        <EntityType Name="tblPhases">
+          <Key>
+            <PropertyRef Name="phaseId" />
+          </Key>
+          <Property Name="phaseId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tblApplications" Relationship="Self.fk_tblApplications_tblPhase1" FromRole="tblPhases" ToRole="tblApplications" />
+        </EntityType>
+        <EntityType Name="tblUsers">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="loginName" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="lastLogin" Type="DateTime" Precision="3" />
+          <Property Name="dateCreated" Type="DateTime" Precision="3" />
+          <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="fk_tblApplication_tblOperatingSystem1">
+          <End Role="tblOperatingSystems" Type="Self.tblOperatingSystems" Multiplicity="1" />
+          <End Role="tblApplications" Type="Self.tblApplications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblOperatingSystems">
+              <PropertyRef Name="operatingSystemId" />
+            </Principal>
+            <Dependent Role="tblApplications">
+              <PropertyRef Name="tblOperatingSystems_operatingSystemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tblApplications_tblCustomers1">
+          <End Role="tblCustomers" Type="Self.tblCustomers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblApplications" Type="Self.tblApplications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCustomers">
+              <PropertyRef Name="customerId" />
+            </Principal>
+            <Dependent Role="tblApplications">
+              <PropertyRef Name="tblCustomers_customerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tblApplications_tblPhase1">
+          <End Role="tblPhases" Type="Self.tblPhases" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblApplications" Type="Self.tblApplications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPhases">
+              <PropertyRef Name="phaseId" />
+            </Principal>
+            <Dependent Role="tblApplications">
+              <PropertyRef Name="tblPhases_phaseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tblDevice_tblApplication1">
+          <End Role="tblApplications" Type="Self.tblApplications" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblDevices" Type="Self.tblDevices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblApplications">
+              <PropertyRef Name="applicationId" />
+            </Principal>
+            <Dependent Role="tblDevices">
+              <PropertyRef Name="tblApplications_applicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tblMessage_tblApplication1">
+          <End Role="tblApplications" Type="Self.tblApplications" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblMessages" Type="Self.tblMessages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblApplications">
+              <PropertyRef Name="applicationId" />
+            </Principal>
+            <Dependent Role="tblMessages">
+              <PropertyRef Name="tblApplications_applicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tblCrashReport_tblDevice1">
+          <End Role="tblDevices" Type="Self.tblDevices" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblCrashReports" Type="Self.tblCrashReports" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDevices">
+              <PropertyRef Name="deviceId" />
+            </Principal>
+            <Dependent Role="tblCrashReports">
+              <PropertyRef Name="tblDevices_deviceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tblMessage_tbLanguageCodes1">
+          <End Role="tblLanguageCodes" Type="Self.tblLanguageCodes" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblMessages" Type="Self.tblMessages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLanguageCodes">
+              <PropertyRef Name="languageId" />
+            </Principal>
+            <Dependent Role="tblMessages">
+              <PropertyRef Name="tbLanguageCodes_languageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AppVersionCheckEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblApplications" EntityType="Self.tblApplications" />
+          <EntitySet Name="tblCrashReports" EntityType="Self.tblCrashReports" />
+          <EntitySet Name="tblCustomers" EntityType="Self.tblCustomers" />
+          <EntitySet Name="tblDevices" EntityType="Self.tblDevices" />
+          <EntitySet Name="tblLanguageCodes" EntityType="Self.tblLanguageCodes" />
+          <EntitySet Name="tblMessages" EntityType="Self.tblMessages" />
+          <EntitySet Name="tblOperatingSystems" EntityType="Self.tblOperatingSystems" />
+          <EntitySet Name="tblPhases" EntityType="Self.tblPhases" />
+          <EntitySet Name="tblUsers" EntityType="Self.tblUsers" />
+          <AssociationSet Name="fk_tblApplication_tblOperatingSystem1" Association="Self.fk_tblApplication_tblOperatingSystem1">
+            <End Role="tblOperatingSystems" EntitySet="tblOperatingSystems" />
+            <End Role="tblApplications" EntitySet="tblApplications" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tblApplications_tblCustomers1" Association="Self.fk_tblApplications_tblCustomers1">
+            <End Role="tblCustomers" EntitySet="tblCustomers" />
+            <End Role="tblApplications" EntitySet="tblApplications" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tblApplications_tblPhase1" Association="Self.fk_tblApplications_tblPhase1">
+            <End Role="tblPhases" EntitySet="tblPhases" />
+            <End Role="tblApplications" EntitySet="tblApplications" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tblDevice_tblApplication1" Association="Self.fk_tblDevice_tblApplication1">
+            <End Role="tblApplications" EntitySet="tblApplications" />
+            <End Role="tblDevices" EntitySet="tblDevices" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tblMessage_tblApplication1" Association="Self.fk_tblMessage_tblApplication1">
+            <End Role="tblApplications" EntitySet="tblApplications" />
+            <End Role="tblMessages" EntitySet="tblMessages" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tblCrashReport_tblDevice1" Association="Self.fk_tblCrashReport_tblDevice1">
+            <End Role="tblDevices" EntitySet="tblDevices" />
+            <End Role="tblCrashReports" EntitySet="tblCrashReports" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tblMessage_tbLanguageCodes1" Association="Self.fk_tblMessage_tbLanguageCodes1">
+            <End Role="tblLanguageCodes" EntitySet="tblLanguageCodes" />
+            <End Role="tblMessages" EntitySet="tblMessages" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AppVersionCheckModelStoreContainer" CdmEntityContainer="AppVersionCheckEntities">
+          <EntitySetMapping Name="tblApplications">
+            <EntityTypeMapping TypeName="AppVersionCheckModel.tblApplications">
+              <MappingFragment StoreEntitySet="tblApplications">
+                <ScalarProperty Name="applicationId" ColumnName="applicationId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="repeatable" ColumnName="repeatable" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="uniqueId" ColumnName="uniqueId" />
+                <ScalarProperty Name="url" ColumnName="url" />
+                <ScalarProperty Name="repeatVersion" ColumnName="repeatVersion" />
+                <ScalarProperty Name="tblOperatingSystems_operatingSystemId" ColumnName="tblOperatingSystems_operatingSystemId" />
+                <ScalarProperty Name="tblPhases_phaseId" ColumnName="tblPhases_phaseId" />
+                <ScalarProperty Name="tblCustomers_customerId" ColumnName="tblCustomers_customerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCrashReports">
+            <EntityTypeMapping TypeName="AppVersionCheckModel.tblCrashReports">
+              <MappingFragment StoreEntitySet="tblCrashReports">
+                <ScalarProperty Name="crashReportId" ColumnName="crashReportId" />
+                <ScalarProperty Name="report" ColumnName="report" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="tblDevices_deviceId" ColumnName="tblDevices_deviceId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCustomers">
+            <EntityTypeMapping TypeName="AppVersionCheckModel.tblCustomers">
+              <MappingFragment StoreEntitySet="tblCustomers">
+                <ScalarProperty Name="customerId" ColumnName="customerId" />
+                <ScalarProperty Name="contactPerson" ColumnName="contactPerson" />
+                <ScalarProperty Name="companyName" ColumnName="companyName" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="dateCreated" ColumnName="dateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblDevices">
+            <EntityTypeMapping TypeName="AppVersionCheckModel.tblDevices">
+              <MappingFragment StoreEntitySet="tblDevices">
+                <ScalarProperty Name="deviceId" ColumnName="deviceId" />
+                <ScalarProperty Name="operatingSystemVersion" ColumnName="operatingSystemVersion" />
+                <ScalarProperty Name="appVersion" ColumnName="appVersion" />
+                <ScalarProperty Name="uniqueId" ColumnName="uniqueId" />
+                <ScalarProperty Name="insertDate" ColumnName="insertDate" />
+                <ScalarProperty Name="lastCheckinDate" ColumnName="lastCheckinDate" />
+                <ScalarProperty Name="tblApplications_applicationId" ColumnName="tblApplications_applicationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblLanguageCodes">
+            <EntityTypeMapping TypeName="AppVersionCheckModel.tblLanguageCodes">
+              <MappingFragment StoreEntitySet="tblLanguageCodes">
+                <ScalarProperty Name="languageId" ColumnName="languageId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblMessages">
+            <EntityTypeMapping TypeName="AppVersionCheckModel.tblMessages">
+              <MappingFragment StoreEntitySet="tblMessages">
+                <ScalarProperty Name="messageId" ColumnName="messageId" />
+                <ScalarProperty Name="message" ColumnName="message" />
+                <ScalarProperty Name="tblApplications_applicationId" ColumnName="tblApplications_applicationId" />
+                <ScalarProperty Name="tbLanguageCodes_languageId" ColumnName="tbLanguageCodes_languageId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblOperatingSystems">
+            <EntityTypeMapping TypeName="AppVersionCheckModel.tblOperatingSystems">
+              <MappingFragment StoreEntitySet="tblOperatingSystems">
+                <ScalarProperty Name="operatingSystemId" ColumnName="operatingSystemId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPhases">
+            <EntityTypeMapping TypeName="AppVersionCheckModel.tblPhases">
+              <MappingFragment StoreEntitySet="tblPhases">
+                <ScalarProperty Name="phaseId" ColumnName="phaseId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUsers">
+            <EntityTypeMapping TypeName="AppVersionCheckModel.tblUsers">
+              <MappingFragment StoreEntitySet="tblUsers">
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="loginName" ColumnName="loginName" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="lastLogin" ColumnName="lastLogin" />
+                <ScalarProperty Name="dateCreated" ColumnName="dateCreated" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
