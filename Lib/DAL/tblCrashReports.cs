@@ -12,7 +12,7 @@ namespace Lib.DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class tblCrashReports
+    public class tblCrashReports
     {
         public int crashReportId { get; set; }
         public string report { get; set; }

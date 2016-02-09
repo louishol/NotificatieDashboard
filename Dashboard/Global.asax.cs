@@ -16,6 +16,10 @@ namespace Dashboard
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            //automapper config
+
+            Lib.Helpers.AutoMapperConfig.Initialize();
         }
     }
 }

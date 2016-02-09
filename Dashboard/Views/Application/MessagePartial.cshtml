@@ -1,4 +1,4 @@
-﻿@model Dashboard.Models.tblMessages
+﻿@model Lib.ViewModels.ViewModelMessage
 
 @using (Html.BeginForm()) 
 {
@@ -21,7 +21,7 @@
                             @Html.ValidationMessageFor(model => model.message)
                         </div>
                  
-                        @Html.LabelFor(model => model.tblLanguageCodes.name, new { @class = "control-label col-md-2" })
+                        @Html.LabelFor(model => model.tbLanguageCodes_languageId, new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
                             @Html.DropDownListFor(model => model.tbLanguageCodes_languageId, (SelectList)ViewBag.countries, new { @class ="form-control"})
                             @Html.ValidationMessageFor(model => model.tbLanguageCodes_languageId)

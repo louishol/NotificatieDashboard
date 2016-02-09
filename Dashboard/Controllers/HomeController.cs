@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Lib.ViewModels;
 
 namespace Dashboard.Controllers
 {
@@ -17,11 +18,15 @@ namespace Dashboard.Controllers
         {
 
 
-            ViewBag.appCount = Lib.DAL.Applications.Get().Count;
+            HomeInformation Information = new HomeInformation
+            {
+                DeviceCount = Lib.DAL.Applications.GetCount()
+                    
+            };
+
+            ViewBag.appCount = Lib.DAL.Applications.GetCount();
             ViewBag.devCount = db.tblDevices.Count();
             ViewBag.crashCount = db.tblCrashReports.Count();
-
-            //ViewBag.appCount = 1;
 
             ViewBag.applications = db.tblApplications.ToList();
             ViewBag.customers = db.tblCustomers.ToList();
@@ -33,9 +38,6 @@ namespace Dashboard.Controllers
 
             query = "select tblOperatingSystems.name, COUNT(*) as counter from tblApplications JOIN tblOperatingSystems on tblApplications.tblOperatingSystems_operatingSystemId = tblOperatingSystems.operatingSystemId group by tblOperatingSystems.name";
             //var dic = db.Database.SqlQuery<PercentageApp>(query).ToList();
-
-
-
             ViewBag.osPercentage = db.Database.SqlQuery<PercentageApp>(query).ToList();
             return View();
         }

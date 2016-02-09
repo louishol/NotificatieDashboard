@@ -1,9 +1,11 @@
 ﻿using Dashboard.Models;
+using Lib.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
 
 namespace Dashboard.Controllers
 {
@@ -44,42 +46,29 @@ namespace Dashboard.Controllers
         }
 
         [HttpPost]
-        public JsonResult addMessageToApplication(int appId, String message, int languageId)
+        public JsonResult addMessageToApplication(ViewModelMessage VMMessage)
         {
-            var json = "";
-            var application = db.tblApplications.Find(appId);
+            Mapper.CreateMap<ViewModelMessage, tblMessages>();
+   
+            var application = db.tblApplications.Find(VMMessage.tblApplications_applicationId);
+         
             if(application == null) {
-                json = "{\"status\":\"500\", \"message\":\"Application not found\"}";
-            } else {
-                tblMessages msg = new tblMessages{message = message, tblApplications_applicationId = appId, tbLanguageCodes_languageId = languageId};
-                application.tblMessages.Add(msg);
-                db.SaveChanges();
-                json = "{\"status\":\"200\", \"message\":\"Succes\"}";
+                return Json(new { status = "500", message = "Application not found" });
             }
-            return Json(json, JsonRequestBehavior.AllowGet);
+        
+            tblMessages msg = Mapper.Map<ViewModelMessage, tblMessages>(VMMessage);
+            application.tblMessages.Add(msg);
+            db.SaveChanges();
+            return Json(new { status = "200", message = "Succes" });
+          
         }
-        public ActionResult Details(int? id)
+        public ActionResult Details(int id = 0)
         {
-
-            if (id != null && id > 0)
-            {
-                //Details of application
-                tblApplications app = db.tblApplications.Find(id);
-                //statistics
-                ViewBag.appCount = 1;
-                ViewBag.devCount = db.tblDevices.Where(d => d.tblApplications.applicationId == id).Count();
-                ViewBag.crashCount = db.tblCrashReports.Where(c => c.tblDevices.tblApplications.applicationId == id).Count();
-                //partial view
-                tblMessages partial = new tblMessages();
-                partial.tblApplications_applicationId= id.Value;
-                ViewData["partial"] = partial;
-                //Countries for the message dropdown in the partial view
-                ViewBag.countries = new SelectList(db.tblLanguageCodes, "languageId", "name");
-
-                return View(app);
-            }
-            return RedirectToAction("Index", "Home");
-           
+            var application = Lib.DAL.Applications.GetDetails(id);
+            if (application == null) throw new HttpException(404, "Application not found");
+            ViewData["partial"] = new ViewModelMessage { tblApplications_applicationId = id };
+            ViewBag.countries = new SelectList(db.tblLanguageCodes, "languageId", "name");
+            return View(application);
         }
 	}
 }

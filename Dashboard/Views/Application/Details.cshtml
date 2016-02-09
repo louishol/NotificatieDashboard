@@ -1,4 +1,4 @@
-﻿@model Dashboard.Models.tblApplications
+﻿@model Lib.Models.Application
 
 @{
     ViewBag.Title = "Details";
@@ -11,8 +11,8 @@
 <div class="list-group-item">@Html.DisplayNameFor(model => model.tblOperatingSystems.name) : @Html.DisplayFor(model => model.tblOperatingSystems.name)</div>
 <div class="list-group-item">@Html.DisplayNameFor(model => model.uniqueId) : @Html.DisplayFor(model => model.uniqueId)</div>
 <div class="list-group-item">@Html.DisplayNameFor(model => model.url) : @Html.DisplayFor(model => model.url)</div>
-<div class="list-group-item">@Html.DisplayNameFor(model => model.tblPhases.name) : @Html.DisplayFor(model => model.tblPhases.name)</div>
-<div class="list-group-item">@Html.DisplayNameFor(model => model.tblCustomers.companyName) : @Html.DisplayFor(model => model.tblCustomers.companyName)</div>
+<div class="list-group-item">@Html.DisplayNameFor(model => model.tblPhases.Name) : @Html.DisplayFor(model => model.tblPhases.Name)</div>
+<div class="list-group-item">@Html.DisplayNameFor(model => model.tblCustomers.CompanyName) : @Html.DisplayFor(model => model.tblCustomers.CompanyName)</div>
 <div class="list-group-item">@Html.DisplayNameFor(model => model.repeatable) : @Html.DisplayFor(model => model.repeatable)</div>
 <div class="list-group-item">@Html.DisplayNameFor(model => model.repeatVersion) : @Html.DisplayFor(model => model.repeatVersion)</div>
 
@@ -20,7 +20,7 @@
     <a class="list-group-item active">Berichten van @Model.name <span style="float: right"><p id="newmessage" data-toggle="modal" data-target="#partial" class=" glyphicon glyphicon-plus hover"></p></span></a>
     @foreach (var item in Model.tblMessages)
     {
-        <div class="list-group-item"><span id="@item.messageId" class="glyphicon glyphicon-remove hover" style="float: left; margin-right:10px;"></span>Bericht : @item.message  <span class="badge">@item.tblLanguageCodes.name</span></div>
+        <div class="list-group-item"><span id="" class="glyphicon glyphicon-remove hover" style="float: left; margin-right:10px;"></span>Bericht : @item.message  <span class="badge">@item.tblLanguageCodes.name</span></div>
     }
     @if (Model.tblMessages.Count == 0)
     {
@@ -34,7 +34,7 @@
     {
         foreach (var report in device.tblCrashReports)
         {
-             <div class="list-group-item">Device : @device.uniqueId | Report : @report.report </div>
+             <div class="list-group-item">Device : @device.UniqueId | Report : @report.report </div>
             record = true;
         }
     }
@@ -52,7 +52,7 @@
         var languageID = $("#tbLanguageCodes_languageId").val();
         var languageCode = $("#tbLanguageCodes_languageId").text();
         var applicationID = $("#tblApplications_applicationId").val();
-        var data = {"appId":applicationID, "message":message, "languageId":languageID};
+        var data = { "tblApplications_applicationId": applicationID, "message": message, "tbLanguageCodes_languageId": languageID };
         $.post("/Application/addMessageToApplication",data, function(response) {
    
             console.log(response);
