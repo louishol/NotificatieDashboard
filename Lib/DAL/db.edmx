@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="models.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="models.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="tblApplications">
           <Key>
             <PropertyRef Name="applicationId" />
@@ -19,6 +19,15 @@
           <Property Name="tblOperatingSystems_operatingSystemId" Type="int" Nullable="false" />
           <Property Name="tblPhases_phaseId" Type="int" Nullable="false" />
           <Property Name="tblCustomers_customerId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblCounts">
+          <Key>
+            <PropertyRef Name="countId" />
+          </Key>
+          <Property Name="countId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="applicatiesCount" Type="int" />
+          <Property Name="devicesCount" Type="int" />
+          <Property Name="crashCount" Type="int" />
         </EntityType>
         <EntityType Name="tblCrashReports">
           <Key>
@@ -191,6 +200,7 @@
         </Association>
         <EntityContainer Name="modelsStoreContainer">
           <EntitySet Name="tblApplications" EntityType="Self.tblApplications" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCounts" EntityType="Self.tblCounts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblCrashReports" EntityType="Self.tblCrashReports" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblCustomers" EntityType="Self.tblCustomers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblDevices" EntityType="Self.tblDevices" Schema="dbo" store:Type="Tables" />
@@ -228,8 +238,7 @@
             <End Role="tblMessages" EntitySet="tblMessages" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="models" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -469,7 +478,17 @@
             <End Role="tblLanguageCodes" EntitySet="tblLanguageCodes" />
             <End Role="tblMessages" EntitySet="tblMessages" />
           </AssociationSet>
+          <EntitySet Name="tblCounts" EntityType="models.tblCounts" />
         </EntityContainer>
+        <EntityType Name="tblCounts">
+          <Key>
+            <PropertyRef Name="countId" />
+          </Key>
+          <Property Name="countId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="applicatiesCount" Type="Int32" />
+          <Property Name="devicesCount" Type="Int32" />
+          <Property Name="crashCount" Type="Int32" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -570,6 +589,16 @@
                 <ScalarProperty Name="lastLogin" ColumnName="lastLogin" />
                 <ScalarProperty Name="dateCreated" ColumnName="dateCreated" />
                 <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCounts">
+            <EntityTypeMapping TypeName="models.tblCounts">
+              <MappingFragment StoreEntitySet="tblCounts">
+                <ScalarProperty Name="crashCount" ColumnName="crashCount" />
+                <ScalarProperty Name="devicesCount" ColumnName="devicesCount" />
+                <ScalarProperty Name="applicatiesCount" ColumnName="applicatiesCount" />
+                <ScalarProperty Name="countId" ColumnName="countId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

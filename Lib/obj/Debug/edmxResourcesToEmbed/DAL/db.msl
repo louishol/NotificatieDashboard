@@ -98,5 +98,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="tblCounts">
+      <EntityTypeMapping TypeName="models.tblCounts">
+        <MappingFragment StoreEntitySet="tblCounts">
+          <ScalarProperty Name="crashCount" ColumnName="crashCount" />
+          <ScalarProperty Name="devicesCount" ColumnName="devicesCount" />
+          <ScalarProperty Name="applicatiesCount" ColumnName="applicatiesCount" />
+          <ScalarProperty Name="countId" ColumnName="countId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

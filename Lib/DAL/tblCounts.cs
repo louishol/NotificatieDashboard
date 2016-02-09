@@ -12,13 +12,11 @@ namespace Lib.DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class tblCrashReports
+    public partial class tblCounts
     {
-        public int crashReportId { get; set; }
-        public string report { get; set; }
-        public System.DateTime date { get; set; }
-        public int tblDevices_deviceId { get; set; }
-    
-        public virtual tblDevices tblDevices { get; set; }
+        public int countId { get; set; }
+        public Nullable<int> applicatiesCount { get; set; }
+        public Nullable<int> devicesCount { get; set; }
+        public Nullable<int> crashCount { get; set; }
     }
 }

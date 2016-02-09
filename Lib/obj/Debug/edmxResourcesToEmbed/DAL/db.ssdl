@@ -15,6 +15,15 @@
     <Property Name="tblPhases_phaseId" Type="int" Nullable="false" />
     <Property Name="tblCustomers_customerId" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="tblCounts">
+    <Key>
+      <PropertyRef Name="countId" />
+    </Key>
+    <Property Name="countId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="applicatiesCount" Type="int" />
+    <Property Name="devicesCount" Type="int" />
+    <Property Name="crashCount" Type="int" />
+  </EntityType>
   <EntityType Name="tblCrashReports">
     <Key>
       <PropertyRef Name="crashReportId" />
@@ -186,6 +195,7 @@
   </Association>
   <EntityContainer Name="modelsStoreContainer">
     <EntitySet Name="tblApplications" EntityType="Self.tblApplications" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblCounts" EntityType="Self.tblCounts" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tblCrashReports" EntityType="Self.tblCrashReports" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tblCustomers" EntityType="Self.tblCustomers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tblDevices" EntityType="Self.tblDevices" Schema="dbo" store:Type="Tables" />

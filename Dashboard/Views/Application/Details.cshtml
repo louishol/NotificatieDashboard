@@ -17,7 +17,7 @@
 <div class="list-group-item">@Html.DisplayNameFor(model => model.repeatVersion) : @Html.DisplayFor(model => model.repeatVersion)</div>
 
 <div id="listmessages">
-    <a class="list-group-item active">Berichten van @Model.name <span style="float: right"><p id="newmessage" data-toggle="modal" data-target="#partial" class=" glyphicon glyphicon-plus hover"></p></span></a>
+    <a class="list-group-item active">Berichten van @Model.name <span style="float: right"><div id="newmessage" data-toggle="modal" data-target="#partial" class=" glyphicon glyphicon-plus hover"></div></span></a>
     @foreach (var item in Model.tblMessages)
     {
         <div class="list-group-item"><span id="" class="glyphicon glyphicon-remove hover" style="float: left; margin-right:10px;"></span>Bericht : @item.message  <span class="badge">@item.tblLanguageCodes.name</span></div>
@@ -34,7 +34,7 @@
     {
         foreach (var report in device.tblCrashReports)
         {
-             <div class="list-group-item">Device : @device.UniqueId | Report : @report.report </div>
+             <div class="list-group-item">Device : @device.uniqueId | Report : @report.report </div>
             record = true;
         }
     }

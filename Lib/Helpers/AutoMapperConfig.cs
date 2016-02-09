@@ -23,8 +23,9 @@ namespace Lib.Helpers
             Mapper.CreateMap<tblPhases, Phase>();
             Mapper.CreateMap<tblLanguageCodes, LanguageCode>();
             Mapper.CreateMap<tblCrashReports, CrashReport>();
-            Mapper.CreateMap<ViewModelMessage, tblMessages>();
-            Mapper.CreateMap<tblMessages, ViewModelMessage>();
+            Mapper.CreateMap<MessageViewModel, tblMessages>();
+            Mapper.CreateMap<tblMessages, MessageViewModel>();
+            Mapper.CreateMap<tblCounts, Counter>();
            
         }
     }

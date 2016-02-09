@@ -27,7 +27,6 @@ namespace Lib.DAL
         public string uniqueId { get; set; }
         public string url { get; set; }
         public string repeatVersion { get; set; }
-
         public int tblOperatingSystems_operatingSystemId { get; set; }
         public int tblPhases_phaseId { get; set; }
         public int tblCustomers_customerId { get; set; }

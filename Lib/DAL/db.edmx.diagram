@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="35a91c2bf40d46e4b3725f9e45e34c62" Name="Diagram1">
+      <Diagram DiagramId="a0c355af984941229f6b6aa1952fad05" Name="Diagram1">
         <EntityTypeShape EntityType="models.tblApplications" Width="1.5" PointX="3" PointY="2.875" IsExpanded="true" />
         <EntityTypeShape EntityType="models.tblCrashReports" Width="1.5" PointX="7.5" PointY="3.875" IsExpanded="true" />
         <EntityTypeShape EntityType="models.tblCustomers" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
@@ -21,6 +21,7 @@
         <AssociationConnector Association="models.fk_tblMessage_tblApplication1" ManuallyRouted="false" />
         <AssociationConnector Association="models.fk_tblCrashReport_tblDevice1" ManuallyRouted="false" />
         <AssociationConnector Association="models.fk_tblMessage_tbLanguageCodes1" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="models.tblCounts" Width="1.5" PointX="5.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -236,5 +236,15 @@
       <End Role="tblLanguageCodes" EntitySet="tblLanguageCodes" />
       <End Role="tblMessages" EntitySet="tblMessages" />
     </AssociationSet>
+    <EntitySet Name="tblCounts" EntityType="models.tblCounts" />
   </EntityContainer>
+  <EntityType Name="tblCounts">
+    <Key>
+      <PropertyRef Name="countId" />
+    </Key>
+    <Property Name="countId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="applicatiesCount" Type="Int32" />
+    <Property Name="devicesCount" Type="Int32" />
+    <Property Name="crashCount" Type="Int32" />
+  </EntityType>
 </Schema>

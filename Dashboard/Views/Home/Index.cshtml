@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Lib.ViewModels.HomeViewModel
+@{
     ViewBag.Title = "Home Page";
 }
 @Scripts.Render("~/bundles/jquery")
@@ -6,11 +7,11 @@
 
     <div class="flex-item">
 
-        <a href="/Customer/Create" class="list-group-item active"><span style="float: right"><p class="glyphicon glyphicon-plus"></p></span> Klanten</a>
+        <a href="/Customer/Create" class="list-group-item active"><span style="float: right"><div class="glyphicon glyphicon-plus"></div></span> Klanten</a>
 
-        @foreach (var item in ViewBag.customers)
+        @foreach (var item in Model.Customers)
         {
-            @Html.ActionLink((String)item.companyName, "Details", "Customer", new { id = item.customerId }, new { @class = "list-group-item" });
+            @Html.ActionLink((String)item.CompanyName, "Details", "Customer", new { id = item.customerId }, new { @class = "list-group-item" });
 
         }
     </div>
@@ -19,7 +20,7 @@
             <p id="newapplication" class="glyphicon glyphicon-plus hover"></p>
          </span> Applicaties
         </a>
-        @foreach (var item in ViewBag.applications)
+        @foreach (var item in Model.Applications)
         {   
             @*@Html.ActionLink((String)item.name, "Details", "Application", new { id = item.applicationId}, new { @class = "list-group-item" });*@
             <a href="/Application/Details/@item.applicationId" class="list-group-item">@item.name <span class="badge">V @item.version</span></a>
@@ -35,7 +36,7 @@
         <a href="#" class="list-group-item" style="background-color:lightgreen">
             Onlangs toegevoegde apparaten
         </a>
-        @foreach (var item in ViewBag.devices)
+        @foreach (var item in Model.Devices)
         {
             <a href="#" class="list-group-item">@item.operatingSystemVersion - @item.uniqueId <span class="badge">@item.tblApplications.name</span></a>
         }
@@ -45,9 +46,10 @@
         <a href="#" class="list-group-item" style="background-color:orange">
             Onlangs toegevoegde crash reports
         </a>
-        @foreach (var item in ViewBag.applications)
+        @foreach (var item in Model.CrashReports)
+
         {
-          <a href="#" class="list-group-item">@item.name</a>
+          <a href="#" class="list-group-item">@item.report</a>
         }
      
     </div>
@@ -55,9 +57,10 @@
         <a href="#" class="list-group-item active">
             Populaire Applicaties :
         </a>
-        @foreach (var item in ViewBag.popularApplications)
+        @foreach (var item in Model.Popular)
         {
-            <a href="../Application/Details/@item.applicationId" class="list-group-item"><span class="badge">@item.devices</span>@item.name</a>
+            <a href="../Application/Details/@item.applicationId" class="list-group-item"><span class="badge">@item.devices</span>@item.applicationName
+</a>
         }
     </div>
 </div>
@@ -70,7 +73,7 @@
     function addDataToArray(OS, counter) {
         appData.push([OS, counter]);
     }
-    @foreach (var app in ViewBag.osPercentage)
+    @foreach (var app in Model.OSStatistics)
     {
        @:addDataToArray('@app.name', @app.counter);
     }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Lib.ViewModels
 {
-    public class ViewModelMessage
+    public class MessageViewModel
     {
         public int tblApplications_applicationId { get; set; }
         public String message { get; set; }

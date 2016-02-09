@@ -46,19 +46,13 @@ namespace Dashboard.Controllers
         }
 
         [HttpPost]
-        public JsonResult addMessageToApplication(ViewModelMessage VMMessage)
+        public JsonResult addMessageToApplication(MessageViewModel VMMessage)
         {
-            Mapper.CreateMap<ViewModelMessage, tblMessages>();
-   
-            var application = db.tblApplications.Find(VMMessage.tblApplications_applicationId);
-         
-            if(application == null) {
+            var application = Lib.DAL.Applications.AddMessage(VMMessage);
+            if (application == null)
+            {
                 return Json(new { status = "500", message = "Application not found" });
             }
-        
-            tblMessages msg = Mapper.Map<ViewModelMessage, tblMessages>(VMMessage);
-            application.tblMessages.Add(msg);
-            db.SaveChanges();
             return Json(new { status = "200", message = "Succes" });
           
         }
@@ -66,7 +60,7 @@ namespace Dashboard.Controllers
         {
             var application = Lib.DAL.Applications.GetDetails(id);
             if (application == null) throw new HttpException(404, "Application not found");
-            ViewData["partial"] = new ViewModelMessage { tblApplications_applicationId = id };
+            ViewData["partial"] = new MessageViewModel { tblApplications_applicationId = id };
             ViewBag.countries = new SelectList(db.tblLanguageCodes, "languageId", "name");
             return View(application);
         }

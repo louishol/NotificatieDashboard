@@ -34,5 +34,6 @@ namespace Lib.DAL
         public virtual DbSet<tblOperatingSystems> tblOperatingSystems { get; set; }
         public virtual DbSet<tblPhases> tblPhases { get; set; }
         public virtual DbSet<tblUsers> tblUsers { get; set; }
+        public virtual DbSet<tblCounts> tblCounts { get; set; }
     }
 }

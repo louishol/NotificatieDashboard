@@ -112,6 +112,7 @@ C:\Users\louis\OneDrive\Documenten\GitHub\NotificatieDashboard\Dashboard\bin\Das
 C:\Users\louis\OneDrive\Documenten\GitHub\NotificatieDashboard\Dashboard\bin\Dashboard.dll
 C:\Users\louis\OneDrive\Documenten\GitHub\NotificatieDashboard\Dashboard\bin\Dashboard.pdb
 C:\Users\louis\OneDrive\Documenten\GitHub\NotificatieDashboard\Dashboard\bin\Antlr3.Runtime.dll
+C:\Users\louis\OneDrive\Documenten\GitHub\NotificatieDashboard\Dashboard\bin\AutoMapper.dll
 C:\Users\louis\OneDrive\Documenten\GitHub\NotificatieDashboard\Dashboard\bin\EntityFramework.dll
 C:\Users\louis\OneDrive\Documenten\GitHub\NotificatieDashboard\Dashboard\bin\EntityFramework.SqlServer.dll
 C:\Users\louis\OneDrive\Documenten\GitHub\NotificatieDashboard\Dashboard\bin\Lib.dll
@@ -138,8 +139,8 @@ C:\Users\louis\OneDrive\Documenten\GitHub\NotificatieDashboard\Dashboard\bin\Sys
 C:\Users\louis\OneDrive\Documenten\GitHub\NotificatieDashboard\Dashboard\bin\System.Web.WebPages.dll
 C:\Users\louis\OneDrive\Documenten\GitHub\NotificatieDashboard\Dashboard\bin\System.Web.WebPages.Razor.dll
 C:\Users\louis\OneDrive\Documenten\GitHub\NotificatieDashboard\Dashboard\bin\WebGrease.dll
-C:\Users\louis\OneDrive\Documenten\GitHub\NotificatieDashboard\Dashboard\bin\AutoMapper.dll
 C:\Users\louis\OneDrive\Documenten\GitHub\NotificatieDashboard\Dashboard\bin\Lib.pdb
+C:\Users\louis\OneDrive\Documenten\GitHub\NotificatieDashboard\Dashboard\bin\AutoMapper.xml
 C:\Users\louis\OneDrive\Documenten\GitHub\NotificatieDashboard\Dashboard\bin\System.Web.Helpers.xml
 C:\Users\louis\OneDrive\Documenten\GitHub\NotificatieDashboard\Dashboard\bin\System.Web.Mvc.xml
 C:\Users\louis\OneDrive\Documenten\GitHub\NotificatieDashboard\Dashboard\bin\System.Web.Optimization.xml
@@ -163,7 +164,6 @@ C:\Users\louis\OneDrive\Documenten\GitHub\NotificatieDashboard\Dashboard\bin\Mic
 C:\Users\louis\OneDrive\Documenten\GitHub\NotificatieDashboard\Dashboard\bin\Microsoft.Owin.Security.Google.xml
 C:\Users\louis\OneDrive\Documenten\GitHub\NotificatieDashboard\Dashboard\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\louis\OneDrive\Documenten\GitHub\NotificatieDashboard\Dashboard\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\Users\louis\OneDrive\Documenten\GitHub\NotificatieDashboard\Dashboard\bin\AutoMapper.xml
 C:\Users\louis\OneDrive\Documenten\GitHub\NotificatieDashboard\Dashboard\obj\Debug\Dashboard.csprojResolveAssemblyReference.cache
 C:\Users\louis\OneDrive\Documenten\GitHub\NotificatieDashboard\Dashboard\obj\Debug\Dashboard.dll
 C:\Users\louis\OneDrive\Documenten\GitHub\NotificatieDashboard\Dashboard\obj\Debug\Dashboard.pdb

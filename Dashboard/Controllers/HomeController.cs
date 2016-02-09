@@ -17,29 +17,24 @@ namespace Dashboard.Controllers
         public ActionResult Index()
         {
 
-
-            HomeInformation Information = new HomeInformation
+            var progStats = Lib.DAL.Applications.GetProgramStatistics();
+            //vullen van de statistieken van de template layout.
+            //Dit moet in de viewbag
+            ViewBag.devCount = progStats.devicesCount == null ? 0 : (int)progStats.devicesCount;
+            ViewBag.appCount = progStats.applicatiesCount == null ? 0 : (int)progStats.applicatiesCount;
+            ViewBag.crashCount = progStats.crashCount == null ? 0 : (int)progStats.crashCount;
+          
+            HomeViewModel Information = new HomeViewModel
             {
-                DeviceCount = Lib.DAL.Applications.GetCount()
-                    
+                Applications = Lib.DAL.Applications.Get(),
+                CrashReports = Lib.DAL.CrashReports.Get(),
+                Devices = Lib.DAL.Devices.GetDevicesInRecentDate(7),
+                Customers = Lib.DAL.Customers.Get(),
+                Popular = Lib.DAL.Applications.GetPopularApps(10),
+                OSStatistics = Lib.DAL.OperatingSystems.GetStatistics()
             };
 
-            ViewBag.appCount = Lib.DAL.Applications.GetCount();
-            ViewBag.devCount = db.tblDevices.Count();
-            ViewBag.crashCount = db.tblCrashReports.Count();
-
-            ViewBag.applications = db.tblApplications.ToList();
-            ViewBag.customers = db.tblCustomers.ToList();
-            var dateweekago = DateTime.Now.AddDays(-7);
-            ViewBag.devices = db.tblDevices.Where(d => d.insertDate > dateweekago).ToList();
-
-            string query = "Select applicationId, name, COUNT(*) as devices from tblApplications join tblDevices on tblDevices.tblApplications_applicationId = tblApplications.applicationId group by name, applicationId order by devices DESC";
-            ViewBag.popularApplications = db.Database.SqlQuery<PopularApp>(query).ToList();
-
-            query = "select tblOperatingSystems.name, COUNT(*) as counter from tblApplications JOIN tblOperatingSystems on tblApplications.tblOperatingSystems_operatingSystemId = tblOperatingSystems.operatingSystemId group by tblOperatingSystems.name";
-            //var dic = db.Database.SqlQuery<PercentageApp>(query).ToList();
-            ViewBag.osPercentage = db.Database.SqlQuery<PercentageApp>(query).ToList();
-            return View();
+            return View(Information);
         }
     }
 }
