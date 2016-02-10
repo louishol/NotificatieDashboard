@@ -11,8 +11,8 @@
 <div class="list-group-item">@Html.DisplayNameFor(model => model.tblOperatingSystems.name) : @Html.DisplayFor(model => model.tblOperatingSystems.name)</div>
 <div class="list-group-item">@Html.DisplayNameFor(model => model.uniqueId) : @Html.DisplayFor(model => model.uniqueId)</div>
 <div class="list-group-item">@Html.DisplayNameFor(model => model.url) : @Html.DisplayFor(model => model.url)</div>
-<div class="list-group-item">@Html.DisplayNameFor(model => model.tblPhases.Name) : @Html.DisplayFor(model => model.tblPhases.Name)</div>
-<div class="list-group-item">@Html.DisplayNameFor(model => model.tblCustomers.CompanyName) : @Html.DisplayFor(model => model.tblCustomers.CompanyName)</div>
+<div class="list-group-item">@Html.DisplayNameFor(model => model.tblPhases.name) : @Html.DisplayFor(model => model.tblPhases.name)</div>
+<div class="list-group-item">@Html.DisplayNameFor(model => model.tblCustomers.companyName) : @Html.DisplayFor(model => model.tblCustomers.companyName)</div>
 <div class="list-group-item">@Html.DisplayNameFor(model => model.repeatable) : @Html.DisplayFor(model => model.repeatable)</div>
 <div class="list-group-item">@Html.DisplayNameFor(model => model.repeatVersion) : @Html.DisplayFor(model => model.repeatVersion)</div>
 
@@ -72,9 +72,31 @@
 
 
 <br />
-<div class="form-group">
-    <div>
-        <input type="button" onclick="history.back();" value="Terug" class="btn btn-default" />
-    </div>
-</div>
 
+@using (Html.BeginForm("Delete", "Application", new { id = @Model.applicationId }, FormMethod.Post))
+{
+    <div class="form-group">
+
+        <input type="button" data-toggle="modal" data-target="#myModal" value="Verwijder deze applicatie" class="btn btn-default" />
+        <input type="button" onclick="history.back();" value="Terug" class="btn btn-default" />
+
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Verwijder deze applicatie</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Weet u zeker dat u deze applicatie wilt verwijderden?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="submit" value="Verwijder applicatie" class="btn btn-default" />
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Annuleren</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

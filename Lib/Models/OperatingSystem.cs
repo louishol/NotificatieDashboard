@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace Lib.Models
 {
-
+     [Serializable]
     public class OperatingSystem
     {
 
         public int operatingSystemId { get; set; }
         public string name { get; set; }
+
         public List<Application> tblApplications { get; set; }
     }
 }

@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace Lib.Models
 {
+     [Serializable]
     public class Phase
     {
         public int phaseId { get; set; }
-        public string Name { get; set; }
+        public string name { get; set; }
 
-        public virtual List<Application> Applications { get; set; }
+        public List<Application> tblApplications { get; set; }
     }
 }

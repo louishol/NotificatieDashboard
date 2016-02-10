@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lib.Models
 {
+     [Serializable]
     public class CrashReport
     {
         public int crashReportId { get; set; }

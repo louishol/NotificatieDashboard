@@ -20,13 +20,17 @@ namespace Lib.Helpers
             Mapper.CreateMap<tblMessages, Message>();
             Mapper.CreateMap<tblOperatingSystems, Lib.Models.OperatingSystem>();
             Mapper.CreateMap<tblCustomers, Customer>();
+            Mapper.CreateMap<Customer, tblCustomers>();
             Mapper.CreateMap<tblPhases, Phase>();
             Mapper.CreateMap<tblLanguageCodes, LanguageCode>();
             Mapper.CreateMap<tblCrashReports, CrashReport>();
             Mapper.CreateMap<MessageViewModel, tblMessages>();
             Mapper.CreateMap<tblMessages, MessageViewModel>();
             Mapper.CreateMap<tblCounts, Counter>();
-           
+            Mapper.CreateMap<ApplicationCreateViewModel, Application>();
+            Mapper.CreateMap<Application, tblApplications>();
+            Mapper.CreateMap<Lib.Models.OperatingSystem, tblOperatingSystems>();
+            Mapper.CreateMap<Phase, tblPhases>();
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lib.Models
 {
+    [Serializable]
     public class Counter
     {
         public Nullable<int> applicatiesCount { get; set; }

@@ -11,7 +11,7 @@
 
         @foreach (var item in Model.Customers)
         {
-            @Html.ActionLink((String)item.CompanyName, "Details", "Customer", new { id = item.customerId }, new { @class = "list-group-item" });
+            @Html.ActionLink((String)item.companyName, "Details", "Customer", new { id = item.customerId }, new { @class = "list-group-item" });
 
         }
     </div>
@@ -24,8 +24,32 @@
         {   
             @*@Html.ActionLink((String)item.name, "Details", "Application", new { id = item.applicationId}, new { @class = "list-group-item" });*@
             <a href="/Application/Details/@item.applicationId" class="list-group-item">@item.name <span class="badge">V @item.version</span></a>
-
         }
+        @if (Model.ApplicationCount > 10)
+        {
+            <nav>
+                <ul class="pagination">
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                    </li>
+               
+                    @for (int i = 1; i <= Model.pageNumersApplication; i++)
+                    {
+                        <li class="page-item"><a class="page-link" id="pagination-item" data-id="@i">@i</a></li>
+                    }
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        }
+
     </div>
     <div class="flex-item">
         <a class="list-group-item active"><span class="badge"></span>Verdeling besturingssystemen  </a>
@@ -67,21 +91,38 @@
 
 <script type="text/javascript">
 
-    google.charts.load('current', { 'packages': ['corechart'] });
-    var appData = [['OS', 'Counter']];
 
-    function addDataToArray(OS, counter) {
-        appData.push([OS, counter]);
-    }
-    @foreach (var app in Model.OSStatistics)
-    {
-       @:addDataToArray('@app.name', @app.counter);
-    }
-    google.charts.setOnLoadCallback(drawChart);
-    function drawChart() {
-        var data = google.visualization.arrayToDataTable(appData);
-        var options = {};
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-        chart.draw(data, options);
-    }
+
+        $(".page-item").on("click", function() {
+          
+           var pagination =  $(this).text();
+           var data = { pageNr: pagination};
+
+           $.get("/Application/GetNewSetOfApplications", data, function(response){
+           
+               console.log(response);
+           });
+        
+        });
+
+
+
+        google.charts.load('current', { 'packages': ['corechart'] });
+        var appData = [['OS', 'Counter']];
+
+        function addDataToArray(OS, counter) {
+            appData.push([OS, counter]);
+        }
+        @foreach (var app in Model.OSStatistics)
+        {
+            @:addDataToArray('@app.name', @app.counter);
+        }
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable(appData);
+            var options = {};
+            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+            chart.draw(data, options);
+        }
+ 
 </script>

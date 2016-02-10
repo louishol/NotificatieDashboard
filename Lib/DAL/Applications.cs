@@ -11,17 +11,26 @@ namespace Lib.DAL
 {
     public class Applications
     {
-        public static List<Application> Get()
+        public static List<Application> Get(int itemPerPage, int pageNumber = 1)
         {
        
             using (var db = new dbContainer())
             {
                 var models = from i in db.tblApplications 
                              select i; 
-               return Mapper.Map<List<tblApplications>, List<Application>>(models.ToList());
+               return Mapper.Map<List<tblApplications>, List<Application>>(models.OrderBy(m=>m.applicationId).Skip(itemPerPage * (pageNumber-1)).Take(itemPerPage).ToList());
             }
         }
 
+        public static void Create(Application model)
+        {
+            using (var db = new dbContainer())
+            {
+                var application = Mapper.Map<Application, tblApplications>(model);
+                db.tblApplications.Add(application);
+                db.SaveChanges();
+            }
+        }
         public static List<PopularViewModel> GetPopularApps(int limit)
         {
 
@@ -84,6 +93,27 @@ namespace Lib.DAL
                 //result
                 tblCounts result = models.FirstOrDefault();
                 return Mapper.Map<tblCounts, Counter>(result);
+            }
+        }
+
+
+
+
+        public static Application Delete(int appId)
+        {
+            using (var db = new dbContainer())
+            {
+                var dbApplication = (from i in db.tblApplications where i.applicationId == appId select i).FirstOrDefault();
+
+                var application = Mapper.Map<tblApplications, Application>(dbApplication);
+
+                if (dbApplication != null)
+                {
+                    db.tblApplications.Remove(dbApplication);
+                    db.SaveChanges();
+                }
+
+                return application;
             }
         }
     }

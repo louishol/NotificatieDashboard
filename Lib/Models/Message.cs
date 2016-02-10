@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lib.Models
 {
+     [Serializable]
     public class Message
     {
         public int messageId { get; set; }

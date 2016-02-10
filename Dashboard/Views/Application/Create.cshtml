@@ -1,4 +1,4 @@
-﻿@model Dashboard.Models.tblApplications
+﻿@model Lib.ViewModels.ApplicationCreateViewModel
 
 @{
     ViewBag.Title = "Create";
@@ -21,8 +21,8 @@
         new { @class = "form-control" }) @Html.ValidationMessageFor(model => model.version)
     </div>
     <div class="list-group-item">
-        @Html.DisplayNameFor(model => model.tblOperatingSystems.name) :
-    @Html.DropDownListFor(model => model.tblOperatingSystems_operatingSystemId, (SelectList)ViewBag.OS,
+        @Html.DisplayNameFor(model => model.tblOperatingSystems_operatingSystemId) :
+    @Html.DropDownListFor(model => model.tblOperatingSystems_operatingSystemId, new SelectList(Model.OperatingSystems, "operatingSystemId", "name"),
         new { @class = "form-control" }) @Html.ValidationMessageFor(model => model.tblOperatingSystems_operatingSystemId)
     </div>
     <div class="list-group-item">
@@ -31,13 +31,13 @@
         new { @class = "form-control" }) @Html.ValidationMessageFor(model => model.uniqueId)
     </div>
     <div class="list-group-item">
-        @Html.DisplayNameFor(model => model.tblPhases.name) :
-    @Html.DropDownListFor(model => model.tblPhases_phaseId, (SelectList)ViewBag.phase,
+        @Html.DisplayNameFor(model => model.tblPhases_phaseId) :
+    @Html.DropDownListFor(model => model.tblPhases_phaseId, new SelectList(Model.Phases, "phaseId", "name"),
         new { @class = "form-control" }) @Html.ValidationMessageFor(model => model.tblPhases_phaseId)
     </div>
     <div class="list-group-item">
-        @Html.DisplayNameFor(model => model.tblCustomers.companyName) :
-    @Html.DropDownListFor(model => model.tblCustomers_customerId, (SelectList)ViewBag.customer,
+        @Html.DisplayNameFor(model => model.tblCustomers_customerId) :
+    @Html.DropDownListFor(model => model.tblCustomers_customerId, new SelectList(Model.Customers, "customerId", "companyName"),
         new { @class = "form-control" }) @Html.ValidationMessageFor(model => model.tblCustomers_customerId)
     </div>
     <div class="list-group-item">

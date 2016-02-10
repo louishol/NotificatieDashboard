@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Lib.DAL
 {
+     [Serializable]
     public class Devices
     {
         public static List<Device> Get()

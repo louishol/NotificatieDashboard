@@ -14,6 +14,7 @@ namespace Lib.ViewModels
         public int ApplicationCount { get; set; }
         public int CrashCount { get; set; }
 
+        public int pageNumersApplication { get; set; }
         public List<Application> Applications { get; set; }
         public List<CrashReport> CrashReports { get; set; }
         public List<Device> Devices { get; set; }

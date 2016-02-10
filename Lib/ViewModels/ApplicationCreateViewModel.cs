@@ -1,39 +1,20 @@
-﻿using System;
+﻿using Lib.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lib.Models
+namespace Lib.ViewModels
 {
-    [Serializable]
-    public class Application
+    public class ApplicationCreateViewModel
     {
-       // public int applicationId { get; set; }
-       // public string Name { get; set; }
-       // public bool Repeatable { get; set; }
-       // public string Version { get; set; }
-       // public string UniqueId { get; set; }
-       // public string Url { get; set; }
-       // public string RepeatVersion { get; set; }
 
-       // public int OperatingSystemId { get; set; }
-       // public int PhaseId { get; set; }
-       // public int CustomerId { get; set; }
-
-
-       // public OperatingSystem OperatingSystem { get; set; }
-       // public Customer Customer { get; set; }
-       // public Phase Phase { get; set; }
-
-
-       //public List<Device> Devices { get; set; }
-       //public List<Message> Message { get; set; }
 
         public int applicationId { get; set; }
         [Required(ErrorMessage = "Naam is verplicht")]
-        [Display(Name="Naam")]
+        [Display(Name = "Naam")]
         public string name { get; set; }
         [Required(ErrorMessage = "Herhaaldelijk is verplicht")]
         [Display(Name = "Herhaaldelijk")]
@@ -51,14 +32,18 @@ namespace Lib.Models
         [Display(Name = "Herhalen vanaf")]
         public string repeatVersion { get; set; }
 
+        [Required(ErrorMessage = "Besturingssysteem vanaf is verplicht")]
+        [Display(Name = "Besturingssysteem")]
         public int tblOperatingSystems_operatingSystemId { get; set; }
+        [Required(ErrorMessage = "Fase vanaf is verplicht")]
+        [Display(Name = "Fase")]
         public int tblPhases_phaseId { get; set; }
+        [Required(ErrorMessage = "Klant vanaf is verplicht")]
+        [Display(Name = "Klant")]
         public int tblCustomers_customerId { get; set; }
 
-        public  OperatingSystem tblOperatingSystems { get; set; }
-        //public  Customer tblCustomers { get; set; }
-        //public  Phase tblPhases { get; set; }
-        //public  ICollection<Device> tblDevices { get; set; }
-        //public  ICollection<Message> tblMessages { get; set; }
+        public IEnumerable<Phase> Phases { get; set; }
+        public IEnumerable<Lib.Models.OperatingSystem> OperatingSystems { get; set; }
+        public IEnumerable<Customer> Customers { get; set; }
     }
 }
