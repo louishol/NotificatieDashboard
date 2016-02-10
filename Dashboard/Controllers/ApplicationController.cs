@@ -67,8 +67,9 @@ namespace Dashboard.Controllers
 
         public JsonResult GetNewSetOfApplications(int pageNr)
         {
-            var application = Lib.DAL.Applications.Get(10, pageNr);
-            return Json(application, JsonRequestBehavior.AllowGet);
+            List<Application> applications = Lib.DAL.Applications.Get(10, pageNr);
+            var vmApplication = Mapper.Map<List<Application>, List<ApplicationSetViewModel>>(applications);
+            return Json(vmApplication, JsonRequestBehavior.AllowGet);
         }
 
 

@@ -31,6 +31,7 @@ namespace Lib.Helpers
             Mapper.CreateMap<Application, tblApplications>();
             Mapper.CreateMap<Lib.Models.OperatingSystem, tblOperatingSystems>();
             Mapper.CreateMap<Phase, tblPhases>();
+            Mapper.CreateMap<Application, ApplicationSetViewModel>();
         }
     }
 }

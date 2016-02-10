@@ -18,7 +18,7 @@ namespace Lib.DAL
             {
                 var models = from i in db.tblApplications 
                              select i; 
-               return Mapper.Map<List<tblApplications>, List<Application>>(models.OrderBy(m=>m.applicationId).Skip(itemPerPage * (pageNumber-1)).Take(itemPerPage).ToList());
+               return Mapper.Map<List<tblApplications>, List<Application>>(models.OrderBy(m=>m.name).Skip(itemPerPage * (pageNumber-1)).Take(itemPerPage).ToList());
             }
         }
 
@@ -95,10 +95,13 @@ namespace Lib.DAL
                 return Mapper.Map<tblCounts, Counter>(result);
             }
         }
-
-
-
-
+        public static List<Application> GetSearch(string searchtag)
+        {
+            using(var db = new dbContainer()) {
+                var dbApplications = (from a in db.tblApplications where a.name.Contains(searchtag) select a).ToList();
+                return Mapper.Map<List<tblApplications>, List<Application>>(dbApplications);
+            }
+        }
         public static Application Delete(int appId)
         {
             using (var db = new dbContainer())

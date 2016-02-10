@@ -9,6 +9,11 @@
     padding-right: 15px;
 }
 
+.listitemactive {
+    background-color:cornflowerblue !important;
+    color:white;
+}
+
 /* Set width on the form input elements since they're 100% wide by default */
 input,
 select,

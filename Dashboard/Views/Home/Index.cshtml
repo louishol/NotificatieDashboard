@@ -3,10 +3,12 @@
     ViewBag.Title = "Home Page";
 }
 @Scripts.Render("~/bundles/jquery")
+
+<script src="/Scripts/jquery.bootpag.min.js"></script>
+
 <div class="flex-container">
 
     <div class="flex-item">
-
         <a href="/Customer/Create" class="list-group-item active"><span style="float: right"><div class="glyphicon glyphicon-plus"></div></span> Klanten</a>
 
         @foreach (var item in Model.Customers)
@@ -16,41 +18,25 @@
         }
     </div>
     <div class="flex-item">
-        <a href="/Application/Create" class="list-group-item active"><span style="float: right">
-            <p id="newapplication" class="glyphicon glyphicon-plus hover"></p>
-         </span> Applicaties
-        </a>
-        @foreach (var item in Model.Applications)
-        {   
-            @*@Html.ActionLink((String)item.name, "Details", "Application", new { id = item.applicationId}, new { @class = "list-group-item" });*@
-            <a href="/Application/Details/@item.applicationId" class="list-group-item">@item.name <span class="badge">V @item.version</span></a>
-        }
-        @if (Model.ApplicationCount > 10)
-        {
-            <nav>
-                <ul class="pagination">
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                    </li>
-               
-                    @for (int i = 1; i <= Model.pageNumersApplication; i++)
-                    {
-                        <li class="page-item"><a class="page-link" id="pagination-item" data-id="@i">@i</a></li>
-                    }
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        }
+        <div class="app-list-group">
+           <div class="list-group-item active" >
+     
+                   <a style="float: right" href="/Application/Create"><span style="color:white !important" class="glyphicon glyphicon-plus hover"></span></a>
+                   Applicaties
+                    </div>
 
-    </div>
+                       @foreach (var item in Model.Applications)
+                       {
+                           <a href="/Application/Details/@item.applicationId" class="list-group-item itemapplicaton">@item.name <span class="badge">V @item.version</span></a>
+                       }
+                   </div>
+                   @if (Model.ApplicationCount > 10)
+                   {
+                       <div class="col-md-12 text-center">
+                           <div class="pagination" id="page-selection"></div>
+                       </div>
+                   }
+               </div>
     <div class="flex-item">
         <a class="list-group-item active"><span class="badge"></span>Verdeling besturingssystemen  </a>
         <div id="piechart"></div>
@@ -83,46 +69,46 @@
         </a>
         @foreach (var item in Model.Popular)
         {
-            <a href="../Application/Details/@item.applicationId" class="list-group-item"><span class="badge">@item.devices</span>@item.applicationName
-</a>
+            <a href="../Application/Details/@item.applicationId" class="list-group-item">
+                <span class="badge">@item.devices</span>@item.applicationName
+            </a>
         }
     </div>
 </div>
 
 <script type="text/javascript">
 
+    $('#page-selection').bootpag({
+            total: @Model.pageNumersApplication,
+            page: 1,
+            maxVisible: 7
+    }).on('page', function(event, num){
+        $.get("/Application/GetNewSetOfApplications",  { pageNr: num}, function(response)
+        {   
+            $(".itemapplicaton").remove();
+                $.each(response, function(index) {
+                    var listitem = "<a href='/Application/Details/" + response[index].applicationId + "' class='list-group-item itemapplicaton'>" + response[index].name + " <span class='badge'>V " + response[index].version + "</span></a>";          
+                    $(".app-list-group").append(listitem)
+                });
+            });
+    });
+    
+    google.charts.load('current', { 'packages': ['corechart'] });
+    var appData = [['OS', 'Counter']];
 
-
-        $(".page-item").on("click", function() {
-          
-           var pagination =  $(this).text();
-           var data = { pageNr: pagination};
-
-           $.get("/Application/GetNewSetOfApplications", data, function(response){
-           
-               console.log(response);
-           });
-        
-        });
-
-
-
-        google.charts.load('current', { 'packages': ['corechart'] });
-        var appData = [['OS', 'Counter']];
-
-        function addDataToArray(OS, counter) {
-            appData.push([OS, counter]);
-        }
-        @foreach (var app in Model.OSStatistics)
-        {
-            @:addDataToArray('@app.name', @app.counter);
-        }
-        google.charts.setOnLoadCallback(drawChart);
-        function drawChart() {
-            var data = google.visualization.arrayToDataTable(appData);
-            var options = {};
-            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-            chart.draw(data, options);
-        }
+    function addDataToArray(OS, counter) {
+        appData.push([OS, counter]);
+    }
+    @foreach (var app in Model.OSStatistics)
+    {
+        @:addDataToArray('@app.name', @app.counter);
+    }
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+        var data = google.visualization.arrayToDataTable(appData);
+        var options = {};
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        chart.draw(data, options);
+    }
  
 </script>

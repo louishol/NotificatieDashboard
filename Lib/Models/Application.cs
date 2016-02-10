@@ -56,9 +56,9 @@ namespace Lib.Models
         public int tblCustomers_customerId { get; set; }
 
         public  OperatingSystem tblOperatingSystems { get; set; }
-        //public  Customer tblCustomers { get; set; }
-        //public  Phase tblPhases { get; set; }
-        //public  ICollection<Device> tblDevices { get; set; }
-        //public  ICollection<Message> tblMessages { get; set; }
+        public  Customer tblCustomers { get; set; }
+        public  Phase tblPhases { get; set; }
+        public  ICollection<Device> tblDevices { get; set; }
+        public  ICollection<Message> tblMessages { get; set; }
     }
 }
